@@ -17,7 +17,9 @@ Pod::Spec.new do |s|
   # 预编译的 xcframework
   s.vendored_frameworks = 'MHAdSDK/MHAdSDK.xcframework'
 
-  s.resource_bundles = {}
+  s.resource_bundles = {
+    'MHAdSDK' => ['MHAdSDK/MHAdSDK.bundle/**/*']
+  }
 
   # 支持的最低 iOS 系统版本
   s.platform     = :ios, '11.0'
