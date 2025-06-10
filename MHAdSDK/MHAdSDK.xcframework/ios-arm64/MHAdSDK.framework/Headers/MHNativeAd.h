@@ -64,8 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 请求广告数量。
 @property (nonatomic, assign) NSInteger count;
 
-/// 请求广告素材的尺寸(在第三方SDK支持时有效)。
-@property (nonatomic, assign) CGSize adViewSize;
 
 - (instancetype)initWithPlacementID:(NSString * _Nonnull)placementID;
 
