@@ -11,7 +11,7 @@ target 'MHAdSDKDemo' do
   
   # ----- -----
   # 本地的 MH 广告SDK
-  pod 'MHAdSDK', '~> 1.3.4'
+  pod 'MHAdSDK', '~> 1.3.4.1'
   # 爱奇艺
   
   # 以下是依赖的各个平台的SDK
