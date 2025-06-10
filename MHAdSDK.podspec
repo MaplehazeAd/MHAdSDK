@@ -1,0 +1,25 @@
+Pod::Spec.new do |s|
+  s.name         = 'MHAdSDK'
+  s.version      = '1.3.4'
+  s.summary      = 'A local framework for advertisement SDK.'
+  s.description  = <<-DESC
+    MHAdSDK 是枫岚互联提供的iOS 广告聚合SDK，OC编码。
+  DESC
+
+  s.homepage     = 'https://github.com/MaplehazeAd/MHAdSDK'
+  # License 授权文件
+  s.license      = { :type => 'MIT', :file => 'LICENSE' }
+  s.author       = { 'MaplehazeAd' => 'rd@maplehaze.cn' }
+
+  # 指定源
+  s.source       = { :git => 'https://github.com/MaplehazeAd/MHAdSDK.git', :tag => s.version.to_s }
+
+  # 预编译的 xcframework
+  s.vendored_frameworks = 'MHAdSDK/MHAdSDK.xcframework'
+  s.resources = ['MHAdSDK/MHAdSDK.framework/MHAdSDK.bundle']
+
+  # 支持的最低 iOS 系统版本
+  s.platform     = :ios, '11.0'
+  s.requires_arc = true
+
+end

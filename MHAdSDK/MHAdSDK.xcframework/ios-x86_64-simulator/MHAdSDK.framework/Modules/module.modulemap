@@ -1,0 +1,6 @@
+framework module MHAdSDK {
+  umbrella header "MHAdSDK.h"
+  export *
+
+  module * { export * }
+}
