@@ -2,8 +2,8 @@ Pod::Spec.new do |s|
   s.name         = 'MHAdSDK'
   s.version      = '1.3.4.1'
   s.summary      = 'A local framework for advertisement SDK.'
-  s.description  = <<-DESC
-    MHAdSDK 是枫岚互联提供的iOS 广告聚合SDK，OC编码。
+  s.description = <<-DESC
+    MHAdSDK 是枫岚互联提供的 iOS 广告聚合 SDK，使用 Objective-C 编写，支持多广告平台集成。支持优量汇，爱奇艺SDK接入。
   DESC
 
   s.homepage     = 'https://github.com/MaplehazeAd/MHAdSDK'
