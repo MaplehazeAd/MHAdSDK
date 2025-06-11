@@ -10,9 +10,14 @@ target 'MHAdSDKDemo' do
   # Pods for MHAdSDKDemo
   
   # ----- -----
-  # 本地的 MH 广告SDK
+  # 必须 - MH 广告SDK
+  #推荐通过远程cocoapods方式直接接入。
   pod 'MHAdSDK', '~> 1.3.5'
-  # 爱奇艺
+  
+  # 如果需要本地cocoapods方式接入，请先下载  
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.zip
+  # 将SDK文件夹放入工程，再使用下面的本地路径引入
+  # pod 'MHAdSDK', :path => './MHAdSDK'
   
   # 以下是依赖的各个平台的SDK
   # 优量汇

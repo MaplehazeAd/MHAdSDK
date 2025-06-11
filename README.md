@@ -35,8 +35,7 @@ SDK名称：枫岚互联iOS SDK
 | 1.3.1       | 1.     开屏、原生、激励视频支持摇一摇交互            2.     升级爱奇艺sdk 1.16.009，优化体验与稳定性 | 2025.04.14   |
 | 1.3.2.3     | 1.     激励视频样式升级            2.     升级优量汇sdk到 4.15.40            3.     升级爱奇艺sdk 到1.18.001            4.     升级京东sdk到2.6.26            5.     增强兼容性与稳定性 | 2025.05.14   |
 | 1.3.3       | 1.     升级爱奇艺sdk 到1.18.002            2.     增强兼容性与稳定性 | 2025.05.27   |
-| 1.3.4       | 增强兼容性与稳定性                                           | 2025.06.10   |
-| 1.3.5       | 支持cocoapods接入                                            | 2025.06.11   |
+| 1.3.5       | 1. 支持cocoapods接入<br />2. 增强兼容性与稳定性              | 2025.06.10   |
 
  
 
@@ -82,15 +81,21 @@ SDK名称：枫岚互联iOS SDK
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
- 
+
 platform :ios, '11.0'
 # 这里的 MHAdSDKDemo 应该是你自己的工程名
 target 'MHAdSDKDemo' do
   use_frameworks!
-  # 本地的 MH 广告SDK，支持通过本地路径的方式进行接入。
+  # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
   pod 'MHAdSDK', '~> 1.3.5'
+  
+  # 如果需要本地cocoapods方式接入，请先下载  
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.zip
+  # 再使用下面的本地路径
+  # pod 'MHAdSDK', :path => './MHAdSDK'
+
+  # 以下是三方的SDK
   # 爱奇艺，在v1.16.008开始支持Cocoapods接入
-  # pod 'QySdk', :path => './QySdk'
   pod 'iAdSDK', '~> 1.18.002'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
@@ -99,6 +104,7 @@ target 'MHAdSDKDemo' do
   pod 'JADYun'
   pod 'JADYunMotion'
 end
+
 ```
 
 
