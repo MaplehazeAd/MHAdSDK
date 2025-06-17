@@ -12,7 +12,7 @@ target 'MHAdSDKDemo' do
   # ----- -----
   # 必须 - MH 广告SDK
   #推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.5'
+  pod 'MHAdSDK', '~> 1.3.5.2'
   
   # 如果需要本地cocoapods方式接入，请先下载  
   # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.zip
