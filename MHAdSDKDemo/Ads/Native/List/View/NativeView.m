@@ -89,17 +89,39 @@
         make.height.mas_equalTo(30);
     }];
     
+    UIView * logoView = [[UIView alloc]init];
+    logoView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    logoView.layer.cornerRadius = 4;
+    [self addSubview:logoView];
+    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.adButton);
+        make.centerY.equalTo(self.descriptionLabel);
+        make.width.mas_equalTo(64);
+        make.height.mas_equalTo(24);
+    }];
+    
+    self.logoImageView = [[UIImageView alloc]init];
+    self.logoImageView.layer.cornerRadius = 8;
+    self.logoImageView.layer.masksToBounds = YES;
+    self.logoImageView.image = [UIImage imageNamed:@"maplehaze_logo.png"];
+    [logoView addSubview:self.logoImageView];
+    [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(logoView.mas_leading).offset(4);
+        make.centerY.equalTo(self.descriptionLabel);
+        make.width.height.mas_equalTo(18);
+    }];
+    
     self.adLabel = [[UILabel alloc]init];
-    self.adLabel.text = @"AD";
+    self.adLabel.text = @"枫岚广告";
     self.adLabel.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1.0];
     self.adLabel.textAlignment = NSTextAlignmentCenter;
-    self.adLabel.font = [UIFont systemFontOfSize:12];
+    self.adLabel.font = [UIFont systemFontOfSize:9];
     [self addSubview:self.adLabel];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.descriptionLabel);
-        make.height.mas_equalTo(32);
+        make.height.mas_equalTo(24);
         make.width.mas_equalTo(40);
-        make.trailing.equalTo(self.adButton);
+        make.trailing.equalTo(logoView.mas_trailing).offset(-4);
     }];
     
 }

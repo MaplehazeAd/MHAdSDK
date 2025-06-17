@@ -55,6 +55,14 @@
                                                                   action:@selector(backButtonTapped)];
     backButton.accessibilityIdentifier = @"MHNativeListViewController_BackButtonItem";
     self.navigationItem.leftBarButtonItem = backButton;
+    
+//    UIBarButtonItem *hideButton = [[UIBarButtonItem alloc] initWithTitle:@"显示"
+//                                                                   style:UIBarButtonItemStylePlain
+//                                                                  target:self
+//                                                                  action:@selector(hideButtonTapped)];
+//    hideButton.accessibilityIdentifier = @"MHNativeListViewController_HideButtonItem";
+//    self.navigationItem.rightBarButtonItem = hideButton;
+    
     // 设置导航栏背景颜色
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     // 禁用导航栏的透明效果
@@ -73,6 +81,22 @@
 
 - (void)backButtonTapped{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)hideButtonTapped {
+    
+    // 获取当前按钮
+    UIBarButtonItem *button = self.navigationItem.rightBarButtonItem;
+    
+    // 切换隐藏状态
+    self.adView.hidden = !self.adView.hidden;
+    
+    // 更新按钮标题
+    if (self.adView.hidden) {
+        button.title = @"显示";
+    } else {
+        button.title = @"隐藏";
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -107,6 +131,8 @@
         make.centerX.equalTo(backScroll);
         make.height.mas_equalTo(adHeight * self.adCount);
     }];
+    
+//    self.adView.hidden = YES;
     
     self.nativeAdView = [[NativeView alloc] initWithFrame:CGRectMake(16, 8, adWidth, adHeight)];
     [self.nativeAdView updateTag:1];
@@ -152,7 +178,6 @@
     CGFloat adWidth = [[UIScreen mainScreen] bounds].size.width - 32;
     CGFloat adHeight = adWidth / 16 * 9;
     // backHeight = adHeight + 52 + 34;
-    self.nativeAd.adViewSize = CGSizeMake(adWidth, adHeight);
 }
 
 - (void)loadAd {
@@ -169,7 +194,7 @@
                    adView:(MHNativeAdView *)adView
             nativeAdModel:(MHNativeAdModel *)nativeAdModel
 {
-    [self.view makeToast:@"nativeAd 广告已经展示" duration:2.0F position:CSToastPositionTop];
+    //[self.view makeToast:@"nativeAd 广告已经展示" duration:2.0F position:CSToastPositionTop];
     NSLog(@"收到的tag : %ld", adView.tag);
     if (adView.tag == self.nativeAdView.adView.tag) {
         self.nativeAdView.titleLabel.text = nativeAdModel.title ? nativeAdModel.title : nativeAdModel.actionText;
@@ -229,12 +254,13 @@
             placementID:(NSString *)placementID
          nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
 {
-    [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
     // 读取了多条
     if (nativeAdModels.count <= 0) {
-        [self.view makeToast:@"未能加载到广告!" duration:2.0F position:CSToastPositionTop];
+        [self.view makeToast:@"nativeAd 无填充!" duration:2.0F position:CSToastPositionTop];
         return;
     }
+    
+    [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
     
     for (int i = 0 ; i< nativeAdModels.count; i++) {
         if (i == 0) {
@@ -286,7 +312,8 @@
               errorMessage:(NSString *)errorMessage
 {
     NSLog(@"SDK获取广告失败了, 错误码: %ld... 错误原因: %@", errorCode, errorMessage);
-    [self.view makeToast:@"nativeAd 广告错误" duration:2.0F position:CSToastPositionCenter];
+    NSString *toastMessage = [NSString stringWithFormat:@"nativeAd 广告错误 错误码:%ld reason: %@", errorCode, errorMessage];
+    [self.view makeToast:toastMessage duration:2.0F position:CSToastPositionCenter];
 }
 
 

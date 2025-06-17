@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) MHNativeAdView * adView;
 
 @property (strong, nonatomic) UILabel * descriptionLabel;
+
+@property (strong, nonatomic) UIImageView * logoImageView; // 显示广告的小灰色文字
 @property (strong, nonatomic) UILabel * adLabel; // 显示广告的小灰色文字
 
 - (instancetype)initWithFrame:(CGRect)frame;

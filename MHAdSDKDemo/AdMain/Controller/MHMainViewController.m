@@ -12,6 +12,8 @@
 #import "MHRewardVideoViewController.h"
 #import "MHNativeViewController.h"
 
+#import "MHSettingViewController.h"
+
 @interface MHMainViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 // 首页的表视图
@@ -43,8 +45,24 @@
     [super viewDidLoad];
     self.title = @"枫岚广告SDK";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithTitle:@"设置"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(settingButtonTapped)];
+    settingButton.accessibilityIdentifier = @"MHNativeListViewController_SettingButtonItem";
+    self.navigationItem.rightBarButtonItem = settingButton;
+    
     [self getData];
     [self layoutAllSubviews];
+}
+
+- (void)settingButtonTapped {
+    
+    // 去设置页面
+    MHSettingViewController * settingVC = [[MHSettingViewController alloc]init];
+    [self.navigationController pushViewController:settingVC animated:YES];
+    
 }
 
 - (void)getData {

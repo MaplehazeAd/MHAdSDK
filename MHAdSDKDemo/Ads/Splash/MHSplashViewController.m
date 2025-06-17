@@ -237,7 +237,8 @@
 
 - (void)splashAdLoadFailed:(MHSplashAd *)splashAd errorCode:(NSInteger)errorCode errorMessage:(NSString *)errorMessage
 {
-    [self.view makeToast:errorMessage duration:2.0F position:CSToastPositionCenter];
+    NSString * ERROR = [NSString stringWithFormat:@"code: %ld - %@",errorCode, errorMessage];
+    [self.view makeToast:ERROR duration:2.0F position:CSToastPositionCenter];
 }
 
 
