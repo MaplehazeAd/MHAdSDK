@@ -37,6 +37,7 @@ SDK名称：枫岚互联iOS SDK
 | 1.3.3       | 1.     升级爱奇艺sdk 到1.18.002            2.     增强兼容性与稳定性 | 2025.05.27   |
 | 1.3.5       | 1. 支持cocoapods接入<br />2. 增强兼容性与稳定性              | 2025.06.10   |
 | 1.3.5.1     | 1. 解决已知问题                                              | 2025.06.13   |
+| 1.3.5.3     | 1. 解决偶现的多线程问题                                      | 2025.06.18   |
 
  
 
@@ -88,10 +89,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.5'
+  pod 'MHAdSDK', '~> 1.3.5.3'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.3.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
