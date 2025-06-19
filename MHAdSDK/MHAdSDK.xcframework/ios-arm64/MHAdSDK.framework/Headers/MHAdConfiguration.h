@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 是否允许获取本地安装的AppList
 @property(nonatomic, assign) BOOL allowGetAppList;
 
-
+@property(nonatomic, assign) NSInteger mediaFinalEcpm;
 
 @end
 

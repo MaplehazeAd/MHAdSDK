@@ -10,7 +10,7 @@ SDK名称：枫岚互联iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.5
+版本号：1.3.5.4
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -38,6 +38,7 @@ SDK名称：枫岚互联iOS SDK
 | 1.3.5       | 1. 支持cocoapods接入<br />2. 增强兼容性与稳定性              | 2025.06.10   |
 | 1.3.5.1     | 1. 解决已知问题                                              | 2025.06.13   |
 | 1.3.5.3     | 1. 解决偶现的多线程问题                                      | 2025.06.18   |
+| 1.3.5.4     | 1. 处理已知问题                                              | 2025.06.19   |
 
  
 
@@ -89,10 +90,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.5.3'
+  pod 'MHAdSDK', '~> 1.3.5.4'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.3.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.4.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
