@@ -44,6 +44,12 @@
     [self getData];
     [self layoutAllSubviews];
     
+    // 获取广告
+    self.splashAd = [[MHSplashAd alloc] initWithPlacementID:self.adID];
+    self.splashAd.delegate = self;
+    CGFloat viewWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat adHeighr = [UIScreen mainScreen].bounds.size.height - 120;
+    self.splashAd.viewSize = CGSizeMake(viewWidth, adHeighr);
 }
 
 - (void)backButtonTapped{
@@ -188,9 +194,7 @@
 
 #pragma mark - MHCommonTableViewCellDelegate
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath * _Nullable)indexPath {
-    // 获取广告
-    self.splashAd = [[MHSplashAd alloc] initWithPlacementID:self.adID];
-    self.splashAd.delegate = self;
+    
     [self.splashAd loadAd];
 }
 
@@ -264,6 +268,7 @@
 
 - (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 开屏广告结束");
+
 }
 
 

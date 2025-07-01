@@ -12,7 +12,7 @@ target 'MHAdSDKDemo' do
   # ----- -----
   # 必须 - MH 广告SDK
   #推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.5.4'
+  pod 'MHAdSDK', '~> 1.3.6'
   
   # 如果需要本地cocoapods方式接入，请先下载  
   # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.5.4.zip
@@ -23,7 +23,7 @@ target 'MHAdSDKDemo' do
   # 优量汇
   pod 'GDTMobSDK', '~> 4.15.40'
   # 爱奇艺
-  pod 'iAdSDK', '~> 1.18.002'
+  pod 'iAdSDK', '~> 1.19.007'
   # jdsdk
   #pod 'JADYun'
   #pod 'JADYunMotion'

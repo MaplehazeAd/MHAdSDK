@@ -9,15 +9,17 @@
 #import "NativeView.h"
 #import "Masonry.h"
 #import "MHCommonTableViewCell.h"
-#import "MHNativeListViewController.h"
+#import "MHNativeListAdCell.h"
+#import "UIView+toast.h"
+#import "MHSoundChecker.h"
 
-@interface MHNativeViewController ()<UITableViewDelegate, UITableViewDataSource, MHCommonTableViewCellDelegate>
+@interface MHNativeViewController ()<UITableViewDelegate, UITableViewDataSource, MHCommonTableViewCellDelegate, MHNativeAdDelegete>
 
 //
 @property (nonatomic, strong) UITableView* nativeTableView;
 
 @property (nonatomic, strong) NSMutableArray * dataArray;
-
+@property (nonatomic, strong) NSMutableArray * adArray;
 
 @property (nonatomic, copy) NSString * adID;
 @property (nonatomic, assign) NSInteger adCount; // 需要获取的广告数量
@@ -25,12 +27,18 @@
 @property (nonatomic, assign) BOOL isMuted;
 @property (nonatomic, assign) BOOL isAutoPlayMobileNetwork;
 
+@property (nonatomic, strong) MHNativeAd *nativeAd;
+
+@property (nonatomic, assign) BOOL hasAdData;
+
 @end
 
 @implementation MHNativeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.hasAdData = NO;
         
     self.title = @"原生信息流广告";
     
@@ -49,6 +57,7 @@
     self.adCount = 1;
     
     [self getData];
+    [self createNativeAd];
     [self layoutAllSubviews];
 }
 
@@ -68,24 +77,24 @@
 }
 
 - (void)getData {
-    
+    self.adArray = [NSMutableArray array];
     self.dataArray = [NSMutableArray array];
-    NSMutableArray * configArray = [NSMutableArray array];
     
     // 广告位id
     MHCommonCellModel * idModel = [[MHCommonCellModel alloc] init];
     idModel.cellType = MHCommonCellTypeTextField;
     idModel.title = @"广告位id";
+//    idModel.content = @"61903";
     idModel.content = @"61007";
     self.adID = idModel.content;
-    [configArray addObject:idModel];
+    [self.dataArray addObject:idModel];
     
     // 静音
     MHCommonCellModel * audioConfigModel = [[MHCommonCellModel alloc] init];
     audioConfigModel.cellType = MHCommonCellTypeSwitch;
     audioConfigModel.title = @"静音";
     audioConfigModel.isSelect = self.isMuted;
-    [configArray addObject:audioConfigModel];
+    [self.dataArray addObject:audioConfigModel];
     
     // 摇一摇
     if ([MHAdConfiguration sharedConfig].allowShake == YES) {
@@ -93,7 +102,7 @@
         shakeConfigModel.cellType = MHCommonCellTypeSwitch;
         shakeConfigModel.title = @"摇一摇";
         shakeConfigModel.isSelect = [MHAdConfiguration sharedConfig].allowShake;
-        [configArray addObject:shakeConfigModel];
+        [self.dataArray addObject:shakeConfigModel];
     }
     
     // 移动网络是否自动播放
@@ -101,16 +110,51 @@
     autoPlayConfigModel.cellType = MHCommonCellTypeSwitch;
     autoPlayConfigModel.title = @"移动网络是否自动播放";
     autoPlayConfigModel.isSelect = self.isAutoPlayMobileNetwork;
-    [configArray addObject:autoPlayConfigModel];
+    [self.dataArray addObject:autoPlayConfigModel];
     
-    [self.dataArray addObject:configArray];
     
     MHCommonCellModel * requestModel = [[MHCommonCellModel alloc] init];
     requestModel.cellType = MHCommonCellTypeButton;
     requestModel.title = @"请求并展示原生广告";
-    NSArray * buttonArray = @[requestModel];
-    [self.dataArray addObject:buttonArray];
+    [self.dataArray addObject:requestModel];
     
+    if (self.hasAdData) {
+        [self addCloseAdData];
+    }
+    
+}
+
+- (void)addCloseAdData {
+    BOOL hasMuteItem = NO;
+    for (MHCommonCellModel *item in self.dataArray) {
+        if ([item.title isEqualToString:@"关闭广告"]) {
+            hasMuteItem = YES;
+            break;
+        }
+    }
+    
+    if (!hasMuteItem) {
+        MHCommonCellModel * closeModel = [[MHCommonCellModel alloc] init];
+        closeModel.cellType = MHCommonCellTypeButton;
+        closeModel.title = @"关闭广告";
+        [self.dataArray addObject:closeModel];
+    }
+    
+}
+
+- (void)removeCloseAdData {
+    [self.dataArray removeLastObject];
+}
+
+
+// 创建广告对象
+- (void)createNativeAd {
+    // 获取广告
+    self.nativeAd = [[MHNativeAd alloc] initWithPlacementID:self.adID];
+    self.nativeAd.isMuted = self.isMuted;
+    self.nativeAd.delegate = self;
+    [self.nativeAd updateAutoPlay:self.isAutoPlayMobileNetwork];
+
 }
 
 // 懒加载mainTableView
@@ -126,43 +170,81 @@
         _nativeTableView.dataSource = self;
         // 注册cell
         [_nativeTableView registerClass:[MHCommonTableViewCell class] forCellReuseIdentifier:@"MHCommonTableViewCell"];
+        [_nativeTableView registerClass:[MHNativeListAdCell class] forCellReuseIdentifier:@"MHNativeListAdCell"];
     }
     return _nativeTableView;
 }
 
+- (void)dealloc {
+    NSLog(@"原生广告页面 dealloc");
+}
+
 #pragma mark ----- UITableViewDelegate && UITableViewDataSource -----
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"MHMainTableViewCell";
-    MHCommonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[MHCommonTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    
+    
+    if (indexPath.section == 0) {
+        static NSString *cellIdentifier = @"MHMainTableViewCell";
+        MHCommonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[MHCommonTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        cell.indexPath = indexPath;
+        cell.delegate = self;
+        
+        MHCommonCellModel * model = self.dataArray[indexPath.row];
+        [cell setCell:model];
+        return cell;
+    } else {
+        static NSString *cellIdentifier = @"MHNativeListAdCell";
+        MHNativeListAdCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[MHNativeListAdCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.nativeAd = self.nativeAd;
+        MHNativeAdModel * model = self.adArray[indexPath.row];
+        [cell setCell:model];
+        return cell;
     }
-    
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    
-    MHCommonCellModel * model = self.dataArray[indexPath.section][indexPath.row];
-    [cell setCell:model];
-    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return self.dataArray.count;
+    } else {
+        // 广告
+        return 1;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataArray.count;
+    if (self.hasAdData) {
+        return 2;
+    } else {
+        return 1;
+    }
+    
+    
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray * sectionArray = self.dataArray[section];
-    return sectionArray.count;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (indexPath.section == 4) {
+    
+    if (indexPath.section == 0) {
         return 60;
+    } else {
+        CGFloat width = self.view.bounds.size.width;
+        CGFloat adViewWidth = width - 16;
+        CGFloat adWidth = adViewWidth - 16;
+        CGFloat adHeight = adWidth / 16 * 9 + 100;
+        return adHeight + 10;
     }
-    return 42;
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -179,12 +261,8 @@
 {
 
     
-    if (section == 4) {
-        CGFloat width = self.view.bounds.size.width;
-        CGFloat adViewWidth = width - 16;
-        CGFloat adWidth = adViewWidth - 16;
-        CGFloat adHeight = adWidth / 16 * 9 + 100;
-        return adHeight * 2 + 24;
+    if (section == 0) {
+        return 40;
     }
     return 0;
 }
@@ -200,12 +278,29 @@
 
 #pragma mark - MHCommonTableViewCellDelegate
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath * _Nullable)indexPath {
-    MHNativeListViewController * listVC = [[MHNativeListViewController alloc] init];
-    listVC.adCount = self.adCount;
-    listVC.adID = self.adID;
-    listVC.isMuted = self.isMuted;
-    listVC.isAutoPlayMobileNetwork = self.isAutoPlayMobileNetwork;
-    [self.navigationController pushViewController:listVC animated:true];
+    // 获取广告数据,完成后刷新 tableview即可
+    MHCommonCellModel * model = self.dataArray[indexPath.row];
+    NSString * title = model.title;
+    if ([title isEqualToString:@"请求并展示原生广告"]) {
+        MHSoundChecker *checker = [[MHSoundChecker alloc] init];
+        [checker checkSilentModeWithCompletion:^(BOOL isMuted) {
+            if (isMuted) {
+                NSLog(@"设备处于静音模式");
+                self.nativeAd.isMuted = YES;
+            } else {
+                NSLog(@"设备未静音");
+                self.nativeAd.isMuted = self.isMuted;
+            }
+            [self.nativeAd loadAd];
+        }];
+        
+        
+    } else if ([title isEqualToString:@"关闭广告"]) {
+        self.hasAdData = NO;
+        [self removeCloseAdData];
+        [self.adArray removeAllObjects];
+        [self.nativeTableView reloadData];
+    }
     
 }
 
@@ -214,18 +309,142 @@
 }
 
 - (void)mhCommonTableViewCellSwitchDidClick:(NSIndexPath * _Nullable)indexPath isOpen:(BOOL)isOpen {
-    MHCommonCellModel * model = self.dataArray[indexPath.section][indexPath.row];
+    MHCommonCellModel * model = self.dataArray[indexPath.row];
     NSString * title = model.title;
     if ([title isEqualToString:@"静音"]) {
         self.isMuted = isOpen;
-    } else if ([title isEqualToString:@"移动网络是否自动播放"]) {
-        // 这里只针对自己的测试包名生效
-        self.isAutoPlayMobileNetwork = isOpen;
+        self.nativeAd.isMuted = isOpen;
+        // 更新数据源中的静音项
+        for (MHCommonCellModel *item in self.dataArray) {
+            if ([item.title isEqualToString:@"静音"]) {
+                item.isSelect = isOpen;
+                break;
+            }
+        }
         
+    } else if ([title isEqualToString:@"移动网络是否自动播放"]) {
+        self.isAutoPlayMobileNetwork = isOpen;
+        // 如有需要，也可以同步更新数据源
+        for (MHCommonCellModel *item in self.dataArray) {
+            if ([item.title isEqualToString:@"移动网络是否自动播放"]) {
+                item.isSelect = isOpen;
+                break;
+            }
+        }
     }
+    if (self.hasAdData) {
+        self.hasAdData = NO;
+        [self removeCloseAdData];
+        [self.adArray removeAllObjects];
+    }
+    
+    // 刷新UI
+    [self.nativeTableView reloadData];
 }
 
 
+#pragma mark ----- MHNativeAdDelegete
+/// 广告已经展示。
+- (void)nativeAdDidAppear:(MHNativeAd *)nativeAd
+              placementID:(NSString *)placementID
+                   adView:(MHNativeAdView *)adView
+            nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    //[self.view makeToast:@"nativeAd 广告已经展示" duration:2.0F position:CSToastPositionTop];
+    NSLog(@"收到的tag : %ld", adView.tag);
+    
+}
+
+/// 广告已经被点击。
+- (void)nativeAdDidClick:(MHNativeAd *)nativeAd
+             placementID:(NSString *)placementID
+                  adView:(MHNativeAdView *)adView
+           nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    NSLog(@"nativeAd 已经被点击");
+    [self.view makeToast:@"nativeAd 已经被点击" duration:2.0F position:CSToastPositionCenter];
+}
+
+
+- (void)nativeAdPlayStart:(MHNativeAd *)nativeAd
+              placementID:(NSString *)placementID
+                   adView:(MHNativeAdView *)adView
+            nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    NSLog(@"nativeAd 广告开始播放");
+}
+/// 广告播放结束
+- (void)nativeAdPlayFinish:(MHNativeAd *)nativeAd
+              placementID:(NSString *)placementID
+                   adView:(MHNativeAdView *)adView
+            nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    NSLog(@"nativeAd 广告播放结束");
+}
+
+
+
+// 广告已经收到
+- (void)nativeAdDidLoad:(MHNativeAd *)nativeAd
+            placementID:(NSString *)placementID
+         nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
+{
+    self.hasAdData = YES;
+    [self.adArray removeAllObjects];
+    // 读取了多条
+    if (nativeAdModels.count <= 0) {
+        [self.view makeToast:@"nativeAd 无填充!" duration:2.0F position:CSToastPositionTop];
+        NSLog(@"nativeAd 无填充!");
+        return;
+    }
+    
+    [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
+    
+    for (int i = 0 ; i< nativeAdModels.count; i++) {
+        if (i == 0) {
+            MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
+
+            NSInteger nativeEcpm = nativeModel.ecpm;
+            NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm: %ld", nativeEcpm];
+            [self.view makeToast:ecpmString duration:2.0F position:CSToastPositionCenter];
+            
+            if (nativeModel.isVideoAd) {
+                NSLog(@"视频宽: %ld 高: %ld",nativeModel.imageWidth, nativeModel.imageHeight);
+            }
+            
+            
+            // 如果使用了这一条广告,上报winEcpm
+            if (nativeEcpm != -1) {
+                [nativeModel sendWinNotification:nativeEcpm];
+            }
+            
+            [self addCloseAdData];
+            [self.adArray addObject:nativeModel];
+            [self.nativeTableView reloadData];
+            // 不用的话,上报loss
+            //[nativeModel sendLossNotification:nativeEcpm];
+
+        }
+
+    }
+    
+    
+    
+    
+}
+
+// 广告获取出现错误
+- (void)nativeAdLoadFailed:(MHNativeAd *)nativeAd
+               placementID:(NSString *)placementID
+                 errorCode:(NSInteger)errorCode
+              errorMessage:(NSString *)errorMessage
+{
+    self.hasAdData = NO;
+    [self.adArray removeAllObjects];
+    NSLog(@"SDK获取广告失败了, 错误码: %ld... 错误原因: %@", errorCode, errorMessage);
+    NSString *toastMessage = [NSString stringWithFormat:@"nativeAd 广告错误 错误码:%ld reason: %@", errorCode, errorMessage];
+    [self.view makeToast:toastMessage duration:2.0F position:CSToastPositionCenter];
+}
 
 
 @end
