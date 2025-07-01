@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MHAdConfiguration.h</key>
 		<data>
-		7+l/H8GxR5rH2lkl0Kd4YVxYhEQ=
+		3kdEl35qsC+ejZTEsKxGJEb6Lh8=
 		</data>
 		<key>Headers/MHAdManager.h</key>
 		<data>
@@ -18,11 +18,11 @@
 		</data>
 		<key>Headers/MHMacro.h</key>
 		<data>
-		+0PHXLSpXe3N8fvCTcTFqta5fQE=
+		XJ6hxgRvAefxKFYO9hn3JwhosQQ=
 		</data>
 		<key>Headers/MHNativeAd.h</key>
 		<data>
-		FaRHraPyFpyvV6i5HIdxUN1r3VQ=
+		pHCIZogbpaDZJmLF34ZhfHTP6iM=
 		</data>
 		<key>Headers/MHNativeAdModel.h</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Headers/MHSplashAd.h</key>
 		<data>
-		b7ktU7mtZyA6vGhBwYFSSjBEX7U=
+		oTwqlYMI1LKvFvgouprmAnX91RQ=
 		</data>
 		<key>Headers/MHTypes.h</key>
 		<data>
-		V9uzIMEvuEcaIG+UL8TcX3UifYc=
+		XT5mo//6HsIiNhoGofnnzZK42e8=
 		</data>
 		<key>Headers/UIView+MHAdSDK.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		717y6rrsbh+cWlGG5xJaBFRG6F4=
+		77bbV1f+ploQevrXgc6nYITurRA=
 		</data>
 		<key>MHAdSDK.bundle/ad_close.png</key>
 		<data>
@@ -143,11 +143,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7+l/H8GxR5rH2lkl0Kd4YVxYhEQ=
+			3kdEl35qsC+ejZTEsKxGJEb6Lh8=
 			</data>
 			<key>hash2</key>
 			<data>
-			TayRJrtQIZLKXgUUeaj0C7TWVSryDkJyAx+90QzFdIw=
+			o4y6Q7Z4bfrl9kHWKLxOVB6RxdiMHEmpaObHNi03PCE=
 			</data>
 		</dict>
 		<key>Headers/MHAdManager.h</key>
@@ -176,22 +176,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+0PHXLSpXe3N8fvCTcTFqta5fQE=
+			XJ6hxgRvAefxKFYO9hn3JwhosQQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			pTiUiuu5bHxT9Byx6vgUG0leUpqbQObfi9ORK2PMrFE=
+			etPPX7QQlHNcQgtTIEwL+flHQON4Aj7qr6HzlodKo68=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAd.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			FaRHraPyFpyvV6i5HIdxUN1r3VQ=
+			pHCIZogbpaDZJmLF34ZhfHTP6iM=
 			</data>
 			<key>hash2</key>
 			<data>
-			y87vrInvLOPnsl5O8IpPM+o0GV5yyABqC6zzZVyx1K4=
+			1EbbpzGLPnRGrSH7YA0ML1JXF4dxJQ8Vi82EYAwyGWs=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAdModel.h</key>
@@ -242,22 +242,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			b7ktU7mtZyA6vGhBwYFSSjBEX7U=
+			oTwqlYMI1LKvFvgouprmAnX91RQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			SdekDyMJXSY8iOXSb6+tiIzNqxq1GPcWa1DR9S1dWb8=
+			0GJ+dcLIj+vNHBEniGWXdUWPXZrtj4d1qdGjGfSTpSw=
 			</data>
 		</dict>
 		<key>Headers/MHTypes.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			V9uzIMEvuEcaIG+UL8TcX3UifYc=
+			XT5mo//6HsIiNhoGofnnzZK42e8=
 			</data>
 			<key>hash2</key>
 			<data>
-			7cUVvKetNGnkktlfB10qllTkfcUbEbt4ZYfiKQr5XLU=
+			0N56PA6apvHfSgw2RCnM49DUus1i/5WzpcLk3HKlDOg=
 			</data>
 		</dict>
 		<key>Headers/UIView+MHAdSDK.h</key>

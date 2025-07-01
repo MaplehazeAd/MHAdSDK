@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, MHAdDataMediaID) {
     MHAdDataMediaIDIQiYi = 18,
     MHAdDataMediaIDJD = 19,
     MHAdDataMediaIDSougouUnit = 20,
+    MHAdDataMediaIDMH = 99,
 };
 
 typedef NS_ENUM(NSInteger, MHAdDataPlatformPosType) {

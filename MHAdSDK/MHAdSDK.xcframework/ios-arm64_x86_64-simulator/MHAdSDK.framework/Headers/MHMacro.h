@@ -5,6 +5,7 @@
 //  Created by Abenx on 2021/8/26.
 //
 
+#import "MHAdConfiguration.h"
 
 #ifndef MHMacro_h
 #define MHMacro_h
@@ -19,6 +20,9 @@ static NSString * adDataURLString = @"https://ssp.maplehaze.cn/sdk/getapiv3.3";
 static NSString * adReportURLString = @"https://ssp.maplehaze.cn/report/reqv3.3";
 static NSString * adAppInfoURLString = @"https://ssp.maplehaze.cn/sdk/appinfo";
 static NSString * adCrashReportURLString = @"https://crash.maplehaze.cn/upload/crash"; // 无沙箱
+
+/// 判断当前是否为 Debug 模式（由 MHAdConfiguration 控制）
+#define MH_IS_DEBUG ([MHAdConfiguration sharedConfig].isDebug)
 
 // 安全字典设置宏（防nil值、防非可变字典、防空key）
 #define MH_DIC_SAFE_SET(dic, key, value) do { \

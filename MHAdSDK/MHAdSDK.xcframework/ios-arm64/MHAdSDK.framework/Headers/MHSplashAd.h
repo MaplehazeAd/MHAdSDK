@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithPlacementID:(NSString * _Nonnull)placementID;
 
+@property (nonatomic, assign)CGSize viewSize;
+
 /// 加载广告。
 - (void)loadAd;
 
