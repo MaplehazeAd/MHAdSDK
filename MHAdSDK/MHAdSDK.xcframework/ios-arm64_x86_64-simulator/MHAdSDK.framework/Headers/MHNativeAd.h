@@ -61,9 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 默认：YES。
 @property (nonatomic, assign) BOOL isMuted;
 
-/// 请求广告数量。
-@property (nonatomic, assign) NSInteger count;
-
 
 - (instancetype)initWithPlacementID:(NSString * _Nonnull)placementID;
 
