@@ -10,7 +10,7 @@ SDK名称：枫岚互联iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.6
+版本号：1.3.6.2
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
