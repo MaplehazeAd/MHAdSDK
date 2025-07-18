@@ -73,7 +73,8 @@
     self.nativeAdView.adView.nativeAdModel = nativeAdModel;
     
     [self.nativeAd showInViews:@[self.nativeAdView.adView] withClickableViewsArray:@[
-     @[self.adView, self.nativeAdView.adButton, self.adView]
+//     @[self.adView, self.nativeAdView.adButton, self.adView],
+     @[self.nativeAdView.adButton]
     ]];
 }
 

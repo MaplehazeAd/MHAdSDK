@@ -57,7 +57,7 @@
     self.adCount = 1;
     
     [self getData];
-    [self createNativeAd];
+    
     [self layoutAllSubviews];
 }
 
@@ -291,6 +291,7 @@
                 NSLog(@"设备未静音");
                 self.nativeAd.isMuted = self.isMuted;
             }
+            [self createNativeAd];
             [self.nativeAd loadAd];
         }];
         
@@ -350,8 +351,8 @@
                    adView:(MHNativeAdView *)adView
             nativeAdModel:(MHNativeAdModel *)nativeAdModel
 {
-    //[self.view makeToast:@"nativeAd 广告已经展示" duration:2.0F position:CSToastPositionTop];
-    NSLog(@"收到的tag : %ld", adView.tag);
+    // 我需要打印 nativeAdModel 对象的地址
+    NSLog(@"nativeAdDidAppear nativeAdModel 地址: %p", nativeAdModel);
     
 }
 
@@ -362,6 +363,8 @@
            nativeAdModel:(MHNativeAdModel *)nativeAdModel
 {
     NSLog(@"nativeAd 已经被点击");
+    // 我需要打印 nativeAdModel 对象的地址
+    NSLog(@"nativeAdDidClick nativeAdModel 地址: %p", nativeAdModel);
     [self.view makeToast:@"nativeAd 已经被点击" duration:2.0F position:CSToastPositionCenter];
 }
 
@@ -372,6 +375,7 @@
             nativeAdModel:(MHNativeAdModel *)nativeAdModel
 {
     NSLog(@"nativeAd 广告开始播放");
+    NSLog(@"nativeAdPlayStart nativeAdModel 地址: %p", nativeAdModel);
 }
 /// 广告播放结束
 - (void)nativeAdPlayFinish:(MHNativeAd *)nativeAd
@@ -380,6 +384,8 @@
             nativeAdModel:(MHNativeAdModel *)nativeAdModel
 {
     NSLog(@"nativeAd 广告播放结束");
+    // 我需要打印 nativeAdModel 对象的地址
+    NSLog(@"nativeAdPlayFinish nativeAdModel 地址: %p", nativeAdModel);
 }
 
 
@@ -389,21 +395,27 @@
             placementID:(NSString *)placementID
          nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
 {
-    self.hasAdData = YES;
-    [self.adArray removeAllObjects];
+    
     // 读取了多条
     if (nativeAdModels.count <= 0) {
         [self.view makeToast:@"nativeAd 无填充!" duration:2.0F position:CSToastPositionTop];
         NSLog(@"nativeAd 无填充!");
+        self.hasAdData = NO;
         return;
     }
+    
+    self.hasAdData = YES;
+    [self.adArray removeAllObjects];
     
     [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
     
     for (int i = 0 ; i< nativeAdModels.count; i++) {
         if (i == 0) {
             MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
-
+            
+            // 我需要打印 nativeAdModel 对象的地址
+            NSLog(@"nativeAdDidLoad nativeAdModel 地址: %p", nativeModel);
+            
             NSInteger nativeEcpm = nativeModel.ecpm;
             NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm: %ld", nativeEcpm];
             [self.view makeToast:ecpmString duration:2.0F position:CSToastPositionCenter];
