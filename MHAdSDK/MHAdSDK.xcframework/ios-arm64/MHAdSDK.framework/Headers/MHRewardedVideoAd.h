@@ -31,9 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rewardedVideoAdDidAppear:(MHRewardedVideoAd *)rewardedVideoAd
                      placementID:(NSString *)placementID;
 
-/// 激励视频即将消失.
-- (void)rewardedVideoAdWillDisappear:(MHRewardedVideoAd *)rewardedVideoAd
-                         placementID:(NSString *)placementID;
 
 /// 激励视频已经消失.
 - (void)rewardedVideoAdDidDisappear:(MHRewardedVideoAd *)rewardedVideoAd
