@@ -30,10 +30,6 @@
 - (void)splashAdDidClicked:(MHSplashAd * _Nullable)splashAd
                placementID:(NSString * _Nullable)placementID;
 
-/// 开屏广告已经跳过.
-- (void)splashAdDidSkipped:(MHSplashAd * _Nullable)splashAd
-               placementID:(NSString * _Nullable)placementID;
-
 /// 开屏广告已经结束.
 - (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd
                      placementID:(NSString * _Nullable)placementID;
