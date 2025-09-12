@@ -20,6 +20,9 @@
 @property (strong, nonatomic) UIView *adView;
 @property (strong, nonatomic) NativeView *nativeAdView;
 
+// MHNativeListAdCell.h 或者 .m 的 interface 区域
+@property (nonatomic, strong) MHNativeAdModel *boundAdModel;
+
 @end
 
 @implementation MHNativeListAdCell
@@ -60,18 +63,30 @@
     }];
 }
 
-- (void)setCell:(MHNativeAdModel *)nativeAdModel{
+- (void)setCell:(MHNativeAdModel *)nativeAdModel {
+    // 1. 如果是同一条广告，直接 return，不做任何操作
+//    if (self.boundAdModel == nativeAdModel || [self.boundAdModel isEqual:nativeAdModel]) {
+//        return;
+//    }
+
+    // 2. 记录当前绑定的是哪条广告
+    self.boundAdModel = nativeAdModel;
+
+    // 3. 更新 UI 内容
     self.nativeAdView.titleLabel.text = nativeAdModel.title ? nativeAdModel.title : nativeAdModel.actionText;
     [self.nativeAdView.adButton setTitle:nativeAdModel.actionText ? nativeAdModel.actionText : @"了解更多" forState:UIControlStateNormal];
     self.nativeAdView.descriptionLabel.text = nativeAdModel.description;
+    
     if (nativeAdModel.iconURL == nil) {
         self.nativeAdView.iconImageView.hidden = YES;
     } else {
         self.nativeAdView.iconImageView.hidden = NO;
         [self.nativeAdView.iconImageView sd_setImageWithURL:[NSURL URLWithString:nativeAdModel.iconURL]];
     }
+
+    // 4. 设置广告模型到广告视图
     self.nativeAdView.adView.nativeAdModel = nativeAdModel;
-    
+    // 尽量不要在
     [self.nativeAd showInViews:@[self.nativeAdView.adView] withClickableViewsArray:@[
 //     @[self.adView, self.nativeAdView.adButton, self.adView],
      @[self.nativeAdView.adButton]

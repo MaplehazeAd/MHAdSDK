@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MHAdConfiguration.h</key>
 		<data>
-		3kdEl35qsC+ejZTEsKxGJEb6Lh8=
+		xKrJPe6TemYj4NTmLKOAXL2oFRU=
 		</data>
 		<key>Headers/MHAdManager.h</key>
 		<data>
@@ -18,11 +18,11 @@
 		</data>
 		<key>Headers/MHMacro.h</key>
 		<data>
-		XJ6hxgRvAefxKFYO9hn3JwhosQQ=
+		en6Q+4eIQ9vMjWOwdjPl6+e1Npw=
 		</data>
 		<key>Headers/MHNativeAd.h</key>
 		<data>
-		JoL8m8AZ3gRCf17jtHFAk7UTQBQ=
+		IjXHkU+1wSYjeodx0SxHTGagIEA=
 		</data>
 		<key>Headers/MHNativeAdModel.h</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Headers/MHNativeAdView.h</key>
 		<data>
-		od/ZaVg2FlNvoxuecVApUdbwPBY=
+		9/wcITg102/fUX8waa9R4Y0SL/U=
 		</data>
 		<key>Headers/MHRewardedVideoAd.h</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Headers/MHSplashAd.h</key>
 		<data>
-		DDpxtclDzenmpgUoskoVZL5+tRI=
+		2KkJj2XJdNWJBGe2LYSsNTgrZ5Q=
 		</data>
 		<key>Headers/MHTypes.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		OR5iOopwiv28bx/cX5ye4tnh2QY=
+		64nB8aLjqkaWVJGWrMb7GWg5KIQ=
 		</data>
 		<key>MHAdSDK.bundle/ad_close.png</key>
 		<data>
@@ -75,6 +75,14 @@
 		<key>MHAdSDK.bundle/click_guide.gif</key>
 		<data>
 		httahn/qX7QGieTA+U4yWYgmWE4=
+		</data>
+		<key>MHAdSDK.bundle/mh_action_point_left.png</key>
+		<data>
+		1AfZ7akR6fl8BsuPx2lX/G7hkto=
+		</data>
+		<key>MHAdSDK.bundle/mh_action_point_right.png</key>
+		<data>
+		BAprk46eAb7jfKRrMgeqrJa3qvk=
 		</data>
 		<key>MHAdSDK.bundle/mh_close_page.png</key>
 		<data>
@@ -120,6 +128,146 @@
 		<data>
 		bv5XcmbAmvtMwZSB7zsU56lm73Y=
 		</data>
+		<key>MHAdSDK.bundle/mh_reward_back.png</key>
+		<data>
+		GGijdmq/plGS3c/HQiQ+YPKhyMM=
+		</data>
+		<key>MHAdSDK.bundle/mh_slide_back.png</key>
+		<data>
+		hVkWRV/b0X0KXaUi6hmP+20Y2q8=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_0.png</key>
+		<data>
+		u5FCfyZuR2NmYpWUxkehEGQdV6I=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_1.png</key>
+		<data>
+		uvmiNk2cElIAMQbvJhx4+YXbdS0=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_10.png</key>
+		<data>
+		FvZYvLzVJAtCv66kofZ7VK2SdVs=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_11.png</key>
+		<data>
+		x8OyhSAI1CZQ9Bg88/fUZvIy1p8=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_12.png</key>
+		<data>
+		BhDeQG1BlzYpLn/Or1rN9Y6rhIQ=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_13.png</key>
+		<data>
+		x15dpl7o8Js5iYhMKoB9oIGvR/s=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_14.png</key>
+		<data>
+		SHE8czErnBR32DC9Uy0HgpGgP6A=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_15.png</key>
+		<data>
+		1/2nznSlUyMy9+CQ3htrx8sCgVk=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_16.png</key>
+		<data>
+		4oHNrqy6YmsrIG+lMrpBYXIdMXg=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_17.png</key>
+		<data>
+		1a2GxWBjrqeFOXPk/8ug5EfxtSs=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_18.png</key>
+		<data>
+		zbCCCBFCgM7LMIEIM6aHElhxxi4=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_19.png</key>
+		<data>
+		oWjxtD9vxqhhW45z4sdaAi7FvGE=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_2.png</key>
+		<data>
+		hrBPN4U6gYkCuSZlsSD8LIL8EDs=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_20.png</key>
+		<data>
+		o2HGvanxNAFAyCCW8Foo8AN/VBk=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_21.png</key>
+		<data>
+		iUGQRivCur1SotKBs3r1xdkVBLQ=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_22.png</key>
+		<data>
+		gkd9MFVfS2SDpnH2vBtB1fY2GpE=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_23.png</key>
+		<data>
+		B+781gWC2tnL+5tf7I8LPeaWHgc=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_24.png</key>
+		<data>
+		d+GfEWMypSv7xCp/hvFSlWxNy+w=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_25.png</key>
+		<data>
+		+dNOKJSa1e7fxkWnjQ2q1Qh2Q/U=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_26.png</key>
+		<data>
+		DEd0RInjkoCHI9dIkec3RTwxbIM=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_27.png</key>
+		<data>
+		AiyUIOlU9+CxVW1BftHyz7H0XAA=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_28.png</key>
+		<data>
+		HNC6h248HcotGzgaRSAiaV4Nric=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_29.png</key>
+		<data>
+		DFSXXxZykB353VyYTGmgph8ZZb8=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_3.png</key>
+		<data>
+		k0HEBKwLPlxJHqPpRo0Cra9BSBY=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_30.png</key>
+		<data>
+		Sq24mgWp8OR5f/4bXlB0hY2gHN0=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_31.png</key>
+		<data>
+		Kz1dl390o1tMEBc6SkQgtgIwh/8=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_32.png</key>
+		<data>
+		wqm9xS32ZekapgjQRxpgn7j7sW0=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_4.png</key>
+		<data>
+		+pYKmqmtryUYM5nL9rcFF7RUCIA=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_5.png</key>
+		<data>
+		m+v27OGaNC7IWsCgUr59y5fi8XU=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_6.png</key>
+		<data>
+		P4AdDwbQte7i1zXHFQ8/qBzF2qg=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_7.png</key>
+		<data>
+		CMa6uVR8J4ibUxQ6qGLUAA3ynr0=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_8.png</key>
+		<data>
+		VFTD0L7TX8hFqc8zNvs6Hi0L3B8=
+		</data>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_9.png</key>
+		<data>
+		X0JFniGSAMlhJ49BfvhW6lo3pbA=
+		</data>
 		<key>MHAdSDK.bundle/rewarded_gift.png</key>
 		<data>
 		GecX/tgQZJIvpLQj+QIN2BQ2vY4=
@@ -143,11 +291,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3kdEl35qsC+ejZTEsKxGJEb6Lh8=
+			xKrJPe6TemYj4NTmLKOAXL2oFRU=
 			</data>
 			<key>hash2</key>
 			<data>
-			o4y6Q7Z4bfrl9kHWKLxOVB6RxdiMHEmpaObHNi03PCE=
+			VpCEJyk/MHy45CLrN7eFeGVA3xt0Qw6e2K2Lsb5fx2g=
 			</data>
 		</dict>
 		<key>Headers/MHAdManager.h</key>
@@ -176,22 +324,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XJ6hxgRvAefxKFYO9hn3JwhosQQ=
+			en6Q+4eIQ9vMjWOwdjPl6+e1Npw=
 			</data>
 			<key>hash2</key>
 			<data>
-			etPPX7QQlHNcQgtTIEwL+flHQON4Aj7qr6HzlodKo68=
+			d+EgtK1Woq3uEwwBpxA7HrVZeHmwstTuDcGcqEJTwpk=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAd.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JoL8m8AZ3gRCf17jtHFAk7UTQBQ=
+			IjXHkU+1wSYjeodx0SxHTGagIEA=
 			</data>
 			<key>hash2</key>
 			<data>
-			sRLTVugi6S2WOmALwKsqLfLsh+alRkSFBKNAHK40aPc=
+			KMJcIxn8nZi9LItSbji4xGFSi3oKDvMCV3k7ld8uHWE=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAdModel.h</key>
@@ -209,11 +357,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			od/ZaVg2FlNvoxuecVApUdbwPBY=
+			9/wcITg102/fUX8waa9R4Y0SL/U=
 			</data>
 			<key>hash2</key>
 			<data>
-			Kl4IOQ1IZD4ONce8Am3JSUuM5uYENRQLZIVDIRuWhhw=
+			pOh445WDYfOQl1N/twy42fLqhrDFqvzsj498TVjJu9Q=
 			</data>
 		</dict>
 		<key>Headers/MHRewardedVideoAd.h</key>
@@ -242,11 +390,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DDpxtclDzenmpgUoskoVZL5+tRI=
+			2KkJj2XJdNWJBGe2LYSsNTgrZ5Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			RpfZrtK7EjSuOYlj9BesT6kh6vwx/siR6AjjZmRLaiY=
+			JPP8oY5V2TfQjyzMHoyEnUwpIGdL4sfcsP/vXqhMRBA=
 			</data>
 		</dict>
 		<key>Headers/MHTypes.h</key>
@@ -324,6 +472,28 @@
 			<key>hash2</key>
 			<data>
 			YCDVXsgKSZC8uKRCb1e2Dc6x5y0LqkQkMjEa2ZC3YCA=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_action_point_left.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1AfZ7akR6fl8BsuPx2lX/G7hkto=
+			</data>
+			<key>hash2</key>
+			<data>
+			V9PZGQImdXA9nMCsaguvc8AP7zQPULlQls1rNPHCYrk=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_action_point_right.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BAprk46eAb7jfKRrMgeqrJa3qvk=
+			</data>
+			<key>hash2</key>
+			<data>
+			u1NQq7B38HABYnONfXRVkQieDdXIOtYy+v6R2GAcPr8=
 			</data>
 		</dict>
 		<key>MHAdSDK.bundle/mh_close_page.png</key>
@@ -445,6 +615,391 @@
 			<key>hash2</key>
 			<data>
 			6PblMudsJBRJHJs4UYUqyQcqO3ROudndEL2NifEWqgo=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_reward_back.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			GGijdmq/plGS3c/HQiQ+YPKhyMM=
+			</data>
+			<key>hash2</key>
+			<data>
+			C/+pOTIfB9o0w2NBod7BKmaJ2gChQeoqfIWuMvSFWqc=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_slide_back.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			hVkWRV/b0X0KXaUi6hmP+20Y2q8=
+			</data>
+			<key>hash2</key>
+			<data>
+			UWKbBiIarxIhjy3jJMWa0SNe2oue7B3/7TQi4hjcaNQ=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_0.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			u5FCfyZuR2NmYpWUxkehEGQdV6I=
+			</data>
+			<key>hash2</key>
+			<data>
+			KeKROBVPv+gYo+1iek2kQgCet5qowYIXEkfYGqwXsy4=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_1.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			uvmiNk2cElIAMQbvJhx4+YXbdS0=
+			</data>
+			<key>hash2</key>
+			<data>
+			kgSdMB5BUQhFZ6TlVsN9jqyu3FnFDbx+iGY6LySf+Uo=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_10.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			FvZYvLzVJAtCv66kofZ7VK2SdVs=
+			</data>
+			<key>hash2</key>
+			<data>
+			MwYi2hCJxmXJP8sZ2eHAnfl/l1wk179FP22G/+mTFq8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_11.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			x8OyhSAI1CZQ9Bg88/fUZvIy1p8=
+			</data>
+			<key>hash2</key>
+			<data>
+			e0NopxrqhbEb2I0Lgy535QliEfrdVl0rwuejSWkkS4o=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_12.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BhDeQG1BlzYpLn/Or1rN9Y6rhIQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			DyVaPYn6w8x7av7I7nHxoI8G33wZ4uxQVFUaCcjK3UM=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_13.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			x15dpl7o8Js5iYhMKoB9oIGvR/s=
+			</data>
+			<key>hash2</key>
+			<data>
+			50V9qnpyxnEYs7KQF/566K/lqUFYoV3/YVSfqlToACQ=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_14.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			SHE8czErnBR32DC9Uy0HgpGgP6A=
+			</data>
+			<key>hash2</key>
+			<data>
+			At9WcHhRJ6B4R3ktbzMkEk9pFdclbLiQZtef6X4TJYc=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_15.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1/2nznSlUyMy9+CQ3htrx8sCgVk=
+			</data>
+			<key>hash2</key>
+			<data>
+			3D3POZBBgRAXvKgTZie3WQd2BFgQ9k5TZ3UCufkhp0s=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_16.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4oHNrqy6YmsrIG+lMrpBYXIdMXg=
+			</data>
+			<key>hash2</key>
+			<data>
+			apHnGqgOIeYwl6R9ovhMYA3XiGHpi66DS87BFg9oY3Y=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_17.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1a2GxWBjrqeFOXPk/8ug5EfxtSs=
+			</data>
+			<key>hash2</key>
+			<data>
+			2gPiot7Ip5a/hvnbr6kFiDJQvUiz8XWy5S0y7kHUUjg=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_18.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			zbCCCBFCgM7LMIEIM6aHElhxxi4=
+			</data>
+			<key>hash2</key>
+			<data>
+			8bYdU0F3kseSpyrJREaUZQZzfelsxyB1fveLmogObKU=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_19.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oWjxtD9vxqhhW45z4sdaAi7FvGE=
+			</data>
+			<key>hash2</key>
+			<data>
+			xqTFBT+9xznKHZ3CajowmpLtroBgVhv3O0sL3mEMeaM=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_2.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			hrBPN4U6gYkCuSZlsSD8LIL8EDs=
+			</data>
+			<key>hash2</key>
+			<data>
+			TtaX4p2j5OyUk8bOXLXtnW+wSUUwceLRU3J+dKr2ds8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_20.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			o2HGvanxNAFAyCCW8Foo8AN/VBk=
+			</data>
+			<key>hash2</key>
+			<data>
+			bDVkU5aKYJoR1I/U1mzq+iKYnCLQntmulBTiEeH994o=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_21.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			iUGQRivCur1SotKBs3r1xdkVBLQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			wIWE0frDjgCi12G0bFOfpu6eduWCtWMt4DhWx4u3fc4=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_22.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			gkd9MFVfS2SDpnH2vBtB1fY2GpE=
+			</data>
+			<key>hash2</key>
+			<data>
+			9m3CUxVZ5g+XvwgQ7P3gCyMuUqP6RBHNkLTwgMQtD7g=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_23.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			B+781gWC2tnL+5tf7I8LPeaWHgc=
+			</data>
+			<key>hash2</key>
+			<data>
+			kT9IbRqRb7qYtXHxh/hYQf1qKpR/eRIfqpfhKABAfoc=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_24.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			d+GfEWMypSv7xCp/hvFSlWxNy+w=
+			</data>
+			<key>hash2</key>
+			<data>
+			1H9GWYBa28Ks7J6po+7QSjkvgIFBRq+yPNfd4XNNMvQ=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_25.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+dNOKJSa1e7fxkWnjQ2q1Qh2Q/U=
+			</data>
+			<key>hash2</key>
+			<data>
+			1dlpVleH/BSruCgIh3snaHaFfh3DRZ5uT0DAY+THgr0=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_26.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DEd0RInjkoCHI9dIkec3RTwxbIM=
+			</data>
+			<key>hash2</key>
+			<data>
+			T2Cs/UrWux8nVXGxTM9NTxg/6EOy6tACFsR3n8UsGtE=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_27.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AiyUIOlU9+CxVW1BftHyz7H0XAA=
+			</data>
+			<key>hash2</key>
+			<data>
+			tono+F0NwL3divyO3hItSczDvXepCP1gWz9KbA8ZeG0=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_28.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			HNC6h248HcotGzgaRSAiaV4Nric=
+			</data>
+			<key>hash2</key>
+			<data>
+			Ot+4ZInona9+KoGLO4gcnUFaq7+34lkizxoCpzttRI8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_29.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DFSXXxZykB353VyYTGmgph8ZZb8=
+			</data>
+			<key>hash2</key>
+			<data>
+			qe8ZuDsqRDAxoxWsG33PV6UiFDfca8f3mIrb/uqWrS8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_3.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			k0HEBKwLPlxJHqPpRo0Cra9BSBY=
+			</data>
+			<key>hash2</key>
+			<data>
+			shO9T+3kBmgbzV05xKq5jNS72gdJgJJIrFnBEr6nPyI=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_30.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Sq24mgWp8OR5f/4bXlB0hY2gHN0=
+			</data>
+			<key>hash2</key>
+			<data>
+			nz29CbJntjSIc6g2E6dKPHfKOLcyXak37yZzjYNNJN4=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_31.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Kz1dl390o1tMEBc6SkQgtgIwh/8=
+			</data>
+			<key>hash2</key>
+			<data>
+			c+Uv0W9PIhNTPnpYHdjq7hCPXWBrSKj7p+kbNeoGZK0=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_32.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wqm9xS32ZekapgjQRxpgn7j7sW0=
+			</data>
+			<key>hash2</key>
+			<data>
+			9LEM4BKmFpJATmFdsDetsoKnbUf1s0S5L3pgwImw+kQ=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_4.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+pYKmqmtryUYM5nL9rcFF7RUCIA=
+			</data>
+			<key>hash2</key>
+			<data>
+			vznn6nstwBz2BINL62Bb1YDcgBzk/oxN/I1ejyiPfhQ=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_5.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			m+v27OGaNC7IWsCgUr59y5fi8XU=
+			</data>
+			<key>hash2</key>
+			<data>
+			mpgft1l3UuER47Jj5DFOI6YV/iKeod9gOoO0z6G/Tfk=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_6.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			P4AdDwbQte7i1zXHFQ8/qBzF2qg=
+			</data>
+			<key>hash2</key>
+			<data>
+			bjmtnKZn0ybcH0zep5N8NPemx298nGMMCroOMigT7ko=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_7.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CMa6uVR8J4ibUxQ6qGLUAA3ynr0=
+			</data>
+			<key>hash2</key>
+			<data>
+			eoTXWsUMeWsHhdqRf+iYRNamQIW7Y1VudWjb27v/4Lo=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_8.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			VFTD0L7TX8hFqc8zNvs6Hi0L3B8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rWxkRrhxIuLcrmPIZMJ/Il59VUxipkJ5hS9eGbGd/zc=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_twist_animation/mh_twist_animation_9.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			X0JFniGSAMlhJ49BfvhW6lo3pbA=
+			</data>
+			<key>hash2</key>
+			<data>
+			RFS5ST5of28Nyml8iBqt1xyGrFOzshdGAFGS99HhbPY=
 			</data>
 		</dict>
 		<key>MHAdSDK.bundle/rewarded_gift.png</key>

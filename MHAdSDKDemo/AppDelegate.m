@@ -12,11 +12,22 @@
 #import "MHMainViewController.h"
 #import "UIView+toast.h"
 #include <objc/runtime.h>
-
+#import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate ()<MHSplashAdDelegete>
 
 @property (nonatomic, strong) MHSplashAd *splashAd;
+@property (nonatomic, strong) MHSplashAd *splashAd2;
+@property (nonatomic, strong) MHNativeAd *nativeAd;
+@property (nonatomic, strong) MHNativeAd *nativeAd1;
+@property (nonatomic, strong) MHNativeAd *nativeAd2;
+@property (nonatomic, strong) MHNativeAd *nativeAd3;
+@property (nonatomic, strong) MHNativeAd *nativeAd4;
+@property (nonatomic, strong) MHRewardedVideoAd *rewardAd;
+
+//@property (nonatomic, strong) GDTSplashAd * gdtSplashAd;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
@@ -43,17 +54,17 @@
             NSForegroundColorAttributeName: [UIColor whiteColor]
         }];
     }
-        
-    
+
     
     // 配置 MHAdSDK 的配置项
     [self configMHAd];
-    
-    // 初始化 MHAdSDK
-    
+    //[self configZYAd];
     // 延迟 2 秒后执行代码块
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 这里写延迟执行的代码
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+        [self.locationManager requestWhenInUseAuthorization];
         
         if (@available(iOS 14, *)) {
             // iOS 14
@@ -76,11 +87,14 @@
     });
     
     [self showMianVC];
-    
-    //[self loadSplashAd];
+//    for (int i = 0; i < 10; i++) {
+//        [self loadAllAd];
+//    }
 
+    
     return YES;
 }
+
 
 #pragma mark ––––––––––––– 获取手机上所有的应用
 
@@ -88,14 +102,7 @@
     // 配置允许SDK使用摇一摇功能
     // 必要的配置项
     [MHAdConfiguration sharedConfig].appID = @"10016";
-    
-//    MHSpecidModel * model1 = [[MHSpecidModel alloc]init];
-//    model1.specid = @"1e19f125f7ecd76a0f5bde2a70073f9e";
-//    model1.specid_version = @"20230330";
-//    MHSpecidModel * model2 = [[MHSpecidModel alloc]init];
-//    model2.specid = @"499f1f0a52204ae163faf63a31054681";
-//    model2.specid_version = @"20220111";
-//    [MHAdConfiguration sharedConfig].specidArray = @[model1,model2];
+
 
     MHSpecData * data1 = [[MHSpecData alloc]init];
     data1.spec = @"xxxxf125f7ecd76axxxxxxxxxxxxxxxx";
@@ -110,6 +117,26 @@
     
 }
 
+- (void)configZYAd {
+    // 配置允许SDK使用摇一摇功能
+    // 必要的配置项
+    [MHAdConfiguration sharedConfig].appID = @"11262";
+
+
+    MHSpecData * data1 = [[MHSpecData alloc]init];
+    data1.spec = @"xxxxf125f7ecd76axxxxxxxxxxxxxxxx";
+    data1.spec_v = @"20230330";
+    MHSpecData * data2 = [[MHSpecData alloc]init];
+    data2.spec = @"499f1f0a52204ae1xxxxxxxxxxxxxxxx";
+    data2.spec_v = @"20220111";
+    [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
+    
+    // 可选项
+    [MHAdConfiguration sharedConfig].allowShake = NO;
+    
+}
+
+
 - (void)showMianVC {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -119,10 +146,60 @@
 }
 
 
+//
+- (void)loadAllAd {
+    // 创建并发队列
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    // 创建组
+    dispatch_group_t group = dispatch_group_create();
+    
+    // 并行加载开屏广告
+    dispatch_group_async(group, queue, ^{
+        [self loadSplashAd];
+    });
+    
+    // 并行加载原生广告和激励视频广告
+    for (int i = 0; i < 10; i++) {
+        dispatch_group_async(group, queue, ^{
+            [self loadSplashAd];
+        });
+        dispatch_group_async(group, queue, ^{
+            [self loadNativeAd];
+        });
+        
+        dispatch_group_async(group, queue, ^{
+            [self loadRewardAd];
+        });
+    }
+    
+    // 所有任务完成后的回调
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"所有广告加载请求已并行触发完成");
+    });
+}
+
+
+
+
 - (void)loadSplashAd {
-    self.splashAd = [[MHSplashAd alloc] initWithPlacementID:@"56763"]; // 根据PlacementID创建开屏广告对象
-    self.splashAd.delegate = self;
-    [self.splashAd loadAd];
+    self.splashAd2 = [[MHSplashAd alloc] initWithPlacementID:@"56763"]; // 根据PlacementID创建开屏广告对象
+    self.splashAd2.delegate = self;
+    [self.splashAd2 loadAd];
+}
+
+
+
+- (void)loadNativeAd {
+    self.nativeAd = [[MHNativeAd alloc] initWithPlacementID:@"61007"]; // 根据PlacementID创建开屏广告对象
+    self.nativeAd.delegate = self;
+    [self.nativeAd loadAd];
+}
+
+
+- (void)loadRewardAd {
+    self.rewardAd = [[MHRewardedVideoAd alloc] initWithPlacementID:@"56767"]; // 根据PlacementID创建开屏广告对象
+    self.rewardAd.delegate = self;
+    [self.rewardAd loadAd];
 }
 
 - (UIImage *)getAppIcon {
@@ -170,9 +247,11 @@
     // 使用了这条广告的话,上报竞胜
     [self.splashAd sendWinNotification:100];
     
-    [self.splashAd showInWindow:[UIApplication sharedApplication].keyWindow
-                 withBottomView: bottomView
-                       skipView: nil];
+
+    [splashAd showInWindow:[UIApplication sharedApplication].keyWindow
+             withBottomView: bottomView
+                   skipView: nil];
+
     
     // 没有使用的话
     //[self.splashAd sendLossNotification:100];
@@ -198,15 +277,11 @@
     NSLog(@"AppDelegate 开屏广告点击跳过");
 }
 
-- (void)splashAdAutoDismiss:(MHSplashAd * _Nullable)splashAd
-                placementID:(NSString * _Nullable)placementID
-{
-    NSLog(@"AppDelegate 开屏广告自动消失");
-}
 
-- (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID {
+- (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID {
     NSLog(@"AppDelegate 开屏广告结束");
 }
+
 
 
 @end

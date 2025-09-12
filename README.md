@@ -10,7 +10,7 @@ SDK名称：枫岚互联iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.6.6
+版本号：1.3.7
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -44,6 +44,7 @@ SDK名称：枫岚互联iOS SDK
 | 1.3.6.4     | 修复已知问题                                                 | 2025.07.18   |
 | 1.3.6.5     | 优化播放器播放效果，记录播放结束状态。                       | 2025.08.04   |
 | 1.3.6.6     | 激励视频横竖屏兼容                                           | 2025.08.06   |
+| 1.3.7       | 新增功能，支持扭一扭。                                       | 2025.09.12   |
 |             |                                                              |              |
 
  
@@ -96,19 +97,19 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.6.6'
+  pod 'MHAdSDK', '~> 1.3.7'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.6.6.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.7.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
   # 以下是三方的SDK
   # 爱奇艺，在v1.16.008开始支持Cocoapods接入
-  pod 'iAdSDK', '~> 1.19.007'
+  pod 'iAdSDK', '~> 1.19.023'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
-  pod 'GDTMobSDK', '~> 4.15.40'
+  pod 'GDTMobSDK', '~> 4.15.50'
   # 京东
   pod 'JADYun'
   pod 'JADYunMotion'

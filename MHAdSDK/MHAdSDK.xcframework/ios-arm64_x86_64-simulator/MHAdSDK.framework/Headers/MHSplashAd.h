@@ -17,7 +17,7 @@
 - (void)splashAdDidLoad:(MHSplashAd * _Nullable)splashAd
             placementID:(NSString *_Nullable)placementID;
 
-/// 开屏广告已经加载.
+/// 开屏广告加载失败.
 - (void)splashAdLoadFailed:(MHSplashAd * _Nullable)splashAd
                  errorCode:(NSInteger)errorCode
               errorMessage:(NSString *_Nullable)errorMessage;
@@ -31,17 +31,10 @@
                placementID:(NSString * _Nullable)placementID;
 
 /// 开屏广告已经结束.
-- (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd
-                     placementID:(NSString * _Nullable)placementID;
+- (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd
+                      placementID:(NSString * _Nullable)placementID;
 
-- (void)splashAdAutoDismiss:(MHSplashAd * _Nullable)splashAd
-                placementID:(NSString * _Nullable)placementID;
 
-/// 广告详情页上报链接。
-//- (void)splashAdDidReport:(MHSplashAd * _Nullable)splashAd
-//           impressionLink:(NSString * _Nullable)link
-//                   result:(BOOL)success
-//              placementID:(NSString * _Nullable)placementID;
 @end
 
 NS_ASSUME_NONNULL_BEGIN

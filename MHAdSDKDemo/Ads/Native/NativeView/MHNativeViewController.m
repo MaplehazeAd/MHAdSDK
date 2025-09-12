@@ -30,6 +30,7 @@
 @property (nonatomic, strong) MHNativeAd *nativeAd;
 
 @property (nonatomic, assign) BOOL hasAdData;
+@property (nonatomic, assign) BOOL isAdSectionVisible; // 控制是否显示广告 section
 
 @end
 
@@ -39,7 +40,7 @@
     [super viewDidLoad];
     
     self.hasAdData = NO;
-        
+    self.isAdSectionVisible = YES; // 默认不显示广告区域
     self.title = @"原生信息流广告";
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
@@ -50,6 +51,14 @@
                                                                   action:@selector(backButtonTapped)];
     backButton.accessibilityIdentifier = @"MHNativeViewController_BackButtonItem";
     self.navigationItem.leftBarButtonItem = backButton;
+    
+    // 添加右上角按钮：用于控制显示/隐藏广告区域
+    UIBarButtonItem *showAdButton = [[UIBarButtonItem alloc] initWithTitle:@"隐藏广告"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(showAdSectionButtonTapped)];
+    self.navigationItem.rightBarButtonItem = showAdButton;
+    
     // Do any additional setup after loading the view.
     
     self.isMuted = YES;
@@ -63,6 +72,16 @@
 
 - (void)backButtonTapped{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)showAdSectionButtonTapped {
+    self.isAdSectionVisible = !self.isAdSectionVisible;
+
+    NSString *title = self.isAdSectionVisible ? @"隐藏广告" : @"显示广告";
+    self.navigationItem.rightBarButtonItem.title = title;
+
+    // 刷新表格，重新加载 section 数量
+    [self.nativeTableView reloadData];
 }
 
 -(void)layoutAllSubviews {
@@ -209,25 +228,29 @@
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return self.dataArray.count;
-    } else {
-        // 广告
-        return 1;
+    } else if (section == 1) { // 确保只有在 isAdSectionVisible 为 YES 时，section 1 才存在
+        if (self.isAdSectionVisible && self.hasAdData) {
+            return self.adArray.count;
+        } else {
+            return 0; // 不会走到这里，因为 section 1 根本不显示
+        }
     }
+    return 0;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.hasAdData) {
-        return 2;
+        if (self.isAdSectionVisible) {
+            return 2; // 显示：选项 section(0) + 广告 section(1)
+        } else {
+            return 1; // 只显示：选项 section(0)，隐藏广告 section(1)
+        }
     } else {
-        return 1;
+        return 1; // 只有选项
     }
-    
-    
 }
 
 
@@ -262,20 +285,19 @@
 
     
     if (section == 0) {
-        return 40;
+        return 400;
     }
     return 0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return @"选项";
-    } else {
-        return @" ";
+    } else if (section == 1) {
+        return @"广告区域";
     }
+    return nil;
 }
-
 #pragma mark - MHCommonTableViewCellDelegate
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath * _Nullable)indexPath {
     // 获取广告数据,完成后刷新 tableview即可
@@ -298,11 +320,16 @@
         
     } else if ([title isEqualToString:@"关闭广告"]) {
         self.hasAdData = NO;
+        [self.nativeAd unregisterView];
         [self removeCloseAdData];
         [self.adArray removeAllObjects];
         [self.nativeTableView reloadData];
+        
+        self.isAdSectionVisible = YES;
+        NSString *rightTitle = self.isAdSectionVisible ? @"隐藏广告" : @"显示广告";
+        self.navigationItem.rightBarButtonItem.title = rightTitle;
     }
-    
+   
 }
 
 - (void)mhCommonTableViewCellCheckBoxDidClick:(NSIndexPath * _Nullable)indexPath isSelect:(BOOL)isSelect {
@@ -353,7 +380,8 @@
 {
     // 我需要打印 nativeAdModel 对象的地址
     NSLog(@"nativeAdDidAppear nativeAdModel 地址: %p", nativeAdModel);
-    
+    [self.view makeToast:@"原生自渲染曝光" duration:2.0F position:CSToastPositionCenter];
+    NSLog(@"原生自渲染展示");
 }
 
 /// 广告已经被点击。
@@ -410,37 +438,32 @@
     [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
     
     for (int i = 0 ; i< nativeAdModels.count; i++) {
-        if (i == 0) {
-            MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
-            
-            // 我需要打印 nativeAdModel 对象的地址
-            NSLog(@"nativeAdDidLoad nativeAdModel 地址: %p", nativeModel);
-            
-            NSInteger nativeEcpm = nativeModel.ecpm;
-            NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm: %ld", nativeEcpm];
-            [self.view makeToast:ecpmString duration:2.0F position:CSToastPositionCenter];
-            
-            if (nativeModel.isVideoAd) {
-                NSLog(@"视频宽: %ld 高: %ld",nativeModel.imageWidth, nativeModel.imageHeight);
-            }
-            
-            
-            // 如果使用了这一条广告,上报winEcpm
-            if (nativeEcpm != -1) {
-                [nativeModel sendWinNotification:nativeEcpm];
-            }
-            
-            [self addCloseAdData];
-            [self.adArray addObject:nativeModel];
-            [self.nativeTableView reloadData];
-            // 不用的话,上报loss
-            //[nativeModel sendLossNotification:nativeEcpm];
-
+        MHNativeAdModel * nativeModel = nativeAdModels[i];
+        
+        // 我需要打印 nativeAdModel 对象的地址
+        NSLog(@"nativeAdDidLoad nativeAdModel 地址[%d]: %p", i, nativeModel);
+        
+        NSInteger nativeEcpm = nativeModel.ecpm;
+        NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm[%d]: %ld",i, nativeEcpm];
+        [self.view makeToast:ecpmString duration:2.0F position:CSToastPositionCenter];
+        
+        if (nativeModel.isVideoAd) {
+            NSLog(@"视频宽: %ld 高: %ld",nativeModel.imageWidth, nativeModel.imageHeight);
         }
+        
+        
+        // 如果使用了这一条广告,上报winEcpm
+        if (nativeEcpm != -1) {
+            [nativeModel sendWinNotification:nativeEcpm];
+        }
+        
+        [self addCloseAdData];
+        [self.adArray addObject:nativeModel];
+        
 
     }
     
-    
+    [self.nativeTableView reloadData];
     
     
 }

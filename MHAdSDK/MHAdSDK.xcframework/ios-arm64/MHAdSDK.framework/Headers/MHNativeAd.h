@@ -66,11 +66,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 加载广告
 - (void)loadAd;
+/// 加载多条广告 建议 count <= 3
+- (void)loadAdWithCount:(NSInteger)count;
 
 - (void)updateAutoPlay:(BOOL)isAutoPlayMobileNetwork;
 
 /// 展示广告。
 - (BOOL)showInViews:(NSArray<MHNativeAdView *> *)views withClickableViewsArray:(NSArray<NSArray<UIView *> *> *)clickableViewsArray;
+
+// 解绑view
+- (void)unregisterView;
 
 @end
 

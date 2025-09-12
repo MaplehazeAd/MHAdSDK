@@ -34,7 +34,14 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileURL, &_silentSoundID);
     
     // 3. 注册播放完成回调
-    AudioServicesAddSystemSoundCompletion(_silentSoundID, NULL, NULL, soundCompletionHandler, (__bridge void*)self);
+//    AudioServicesAddSystemSoundCompletion(_silentSoundID, NULL, NULL, soundCompletionHandler, (__bridge void*)self);
+    AudioServicesAddSystemSoundCompletion(
+        _silentSoundID,
+        NULL,
+        NULL,
+        soundCompletionHandler,
+        (__bridge_retained void *)self  // ⬅️ 关键修改：用 __bridge_retained 保证对象存活
+    );
     
     // 4. 记录播放开始时间
     _playStartTime = [NSDate date];
@@ -62,7 +69,12 @@
 
 // 声音播放完成回调
 static void soundCompletionHandler(SystemSoundID ssID, void *clientData) {
-    MHSoundChecker *checker = (__bridge MHSoundChecker *)clientData;
+    
+    MHSoundChecker *checker = (__bridge_transfer MHSoundChecker *)clientData;
+    // 安全判断，虽然理论上不应该为 nil
+    if (!checker) {
+        return;
+    }
     if (checker.completionBlock) {
         NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:checker.playStartTime];
         // 正常播放完成时间在 0.01~0.05 秒之间

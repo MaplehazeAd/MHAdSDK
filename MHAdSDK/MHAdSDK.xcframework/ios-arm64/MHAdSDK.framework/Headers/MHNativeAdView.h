@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)bindAdView:(UIView * _Nonnull)adView
      nativeAdModel:(MHNativeAdModel * _Nonnull)nativeAdModel;
+- (void)unbindAdView;
 
 @end
 

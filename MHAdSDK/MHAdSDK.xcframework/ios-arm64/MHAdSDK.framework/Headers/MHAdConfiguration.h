@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 // debug 模式下会输出日志,默认NO,需要日志的话请设置YES
 @property(nonatomic, assign) BOOL isDebug;
 
+// 开发者模式.默认NO
+@property(nonatomic, assign) BOOL isDeveloperMode;
+
 @property(nonatomic, assign) NSInteger mediaFinalEcpm;
 
 @end

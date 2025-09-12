@@ -52,6 +52,18 @@
     self.splashAd.viewSize = CGSizeMake(viewWidth, adHeighr);
 }
 
+- (BOOL)shouldAutorotate {
+    return NO; // 禁止自动旋转
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait; // 只支持竖屏
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait; // 默认以竖屏方式呈现
+}
+
 - (void)backButtonTapped{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -211,7 +223,7 @@
 - (void)splashAdDidLoad:(MHSplashAd *)splashAd placementID:(NSString *)placementID
 {
     // 上报竞胜 && 展示广告
-    
+    NSLog(@"SplashViewController 获取到开屏广告");
     
     
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
@@ -254,19 +266,8 @@
     NSLog(@"SplashViewController 点击");
 }
 
-- (void)splashAdDidSkipped:(MHSplashAd * _Nullable)splashAd
-               placementID:(NSString * _Nullable)placementID
-{
-    NSLog(@"SplashViewController 开屏广告点击跳过");
-}
 
-- (void)splashAdAutoDismiss:(MHSplashAd * _Nullable)splashAd
-                placementID:(NSString * _Nullable)placementID
-{
-    NSLog(@"SplashViewController 开屏广告自动消失");
-}
-
-- (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
+- (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 开屏广告结束");
 
 }

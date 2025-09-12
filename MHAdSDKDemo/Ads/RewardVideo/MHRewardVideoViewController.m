@@ -64,7 +64,15 @@
     backButton.accessibilityIdentifier = @"MHRewardVideoViewController_BackButtonItem";
     self.navigationItem.leftBarButtonItem = backButton;
     [self getData];
+    
+    self.rewardedVideoAd = [[MHRewardedVideoAd alloc] initWithPlacementID:self.adID];
+    self.rewardedVideoAd.delegate = self;
     [self layoutAllSubviews];
+}
+
+- (void)dealloc
+{
+    NSLog(@"MHRewardVideoViewController 被释放");
 }
 
 - (void)backButtonTapped{
@@ -188,8 +196,7 @@
     
     MHSoundChecker *checker = [[MHSoundChecker alloc] init];
     [checker checkSilentModeWithCompletion:^(BOOL isMuted) {
-        self.rewardedVideoAd = [[MHRewardedVideoAd alloc] initWithPlacementID:self.adID];
-        self.rewardedVideoAd.delegate = self;
+        
         if (isMuted) {
             NSLog(@"设备处于静音模式");
             self.rewardedVideoAd.isMuted = YES;
@@ -219,7 +226,7 @@
 - (void)rewardedVideoAdVideoDidLoad:(MHRewardedVideoAd *)rewardedVideoAd
                         placementID:(NSString *)placementID
 {
-    
+    NSLog(@"rewardedVideoAdVideoDidLoad rewardedVideoAd 地址: %p", rewardedVideoAd);
     // 上报竞胜
     if (rewardedVideoAd.ecpm != -1) {
         NSInteger ecpm = rewardedVideoAd.ecpm;
@@ -259,15 +266,9 @@
 - (void)rewardedVideoAdDidAppear:(MHRewardedVideoAd *)rewardedVideoAd
                      placementID:(NSString *)placementID
 {
+    NSLog(@"rewardedVideoAdDidAppear rewardedVideoAd 地址: %p", rewardedVideoAd);
     NSLog(@"激励视频已经展示!");
     [self.view makeToast:@"激励视频已经展示!" duration:2.0F position:CSToastPositionTop];
-}
-
-/// 激励视频即将消失.
-- (void)rewardedVideoAdWillDisappear:(MHRewardedVideoAd *)rewardedVideoAd
-                         placementID:(NSString *)placementID
-{
-    NSLog(@"激励视频即将消失!");
 }
 
 /// 激励视频已经消失.
