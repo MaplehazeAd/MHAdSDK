@@ -326,20 +326,8 @@ pod install
 - (void)splashAdDidClicked:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 点击");
 }
-// 广告点击跳过
-- (void)splashAdDidSkipped:(MHSplashAd * _Nullable)splashAd
-               placementID:(NSString * _Nullable)placementID
-{
-    NSLog(@"SplashViewController 开屏广告点击跳过");
-}
-// 广告自动消失
-- (void)splashAdAutoDismiss:(MHSplashAd * _Nullable)splashAd
-                placementID:(NSString * _Nullable)placementID
-{
-    NSLog(@"SplashViewController 开屏广告自动消失");
-}
 // 广告结束了
-- (void)splashAdVideoDidFinished:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
+- (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 开屏广告结束");
 }
 ```
@@ -612,13 +600,15 @@ BOOL isShow = [self.rewardedVideoAd showAdFromRootViewController:self];
 
 展示原生广告
 
-
-
 ```objective-c
 [self.nativeAd showInViews:@[nativeView.adView] withClickableViewsArray:@[@[view]]];
 ```
 
+对应的解绑原生广告
 
+```objective-c
+[self.nativeAd unregisterView];
+```
 
 
 
