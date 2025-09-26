@@ -4,13 +4,13 @@
 
 # **SDK信息说明：**
 
-SDK名称：枫岚互联iOS SDK
+SDK名称：枫岚互联 iOS SDK
 
 开发者：北京格瑞创新科技有限公司
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.7
+版本号：1.3.8
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -45,11 +45,12 @@ SDK名称：枫岚互联iOS SDK
 | 1.3.6.5     | 优化播放器播放效果，记录播放结束状态。                       | 2025.08.04   |
 | 1.3.6.6     | 激励视频横竖屏兼容                                           | 2025.08.06   |
 | 1.3.7       | 新增功能，支持扭一扭。                                       | 2025.09.12   |
+| 1.3.8       | 新增功能，支持快手SDK                                        | 2025.09.26   |
 |             |                                                              |              |
 
  
 
-# **一、****接入准备**
+# 一、接入准备
 
 通过下载链接您可以获取到最新的iOS SDK以及Demo工程，强烈建议在实际嵌入SDK到您的项目前先查看Demo工程代码。
 
@@ -65,7 +66,7 @@ SDK名称：枫岚互联iOS SDK
 
  
 
-# **二、****广告位获取**
+# 二、广告位获取
 
 目前阶段广告平台暂时还不支持用户自助创建广告位，在您开始接入SDK时，请联系运营人员为您建立媒体和广告位您需要准备以下资料：媒体名称、包名、需要的广告位数量以及每个广告位的名称和类型。
 
@@ -79,9 +80,9 @@ SDK名称：枫岚互联iOS SDK
 
  
 
-# **三、****开始接入**
+# 三、开始接入
 
-## **1、****自动部署**
+## 1、自动部署
 
 **CocoaPods集成**
 
@@ -97,10 +98,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.7'
+  pod 'MHAdSDK', '~> 1.3.8'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.7.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.8.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
@@ -109,10 +110,15 @@ target 'MHAdSDKDemo' do
   pod 'iAdSDK', '~> 1.19.023'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
-  pod 'GDTMobSDK', '~> 4.15.50'
+  pod 'GDTMobSDK', '~> 4.15.60'
   # 京东
   pod 'JADYun'
   pod 'JADYunMotion'
+  
+  # 快手SDK
+  pod 'KSAdSDK', '~> 4.8.10.1'
+  # 微信 Open SDK
+  pod 'WechatOpenSDK', '2.0.4'
 end
 
 ```
@@ -149,7 +155,12 @@ pod install
 </dict>
 <key>NSUserTrackingUsageDescription</key>
 <string>将用于向您推送个性化广告</string>
- 
+		<!-- 替换定位权限字段 -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>我们需要您的位置信息来提供本地化服务</string>
+    <!-- 添加 iOS 11+ 所需的全新权限字段 -->
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>我们需要持续的位置访问权限来提供后台服务</string>
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>taobao</string>
@@ -384,7 +395,7 @@ pod install
 
  
 
-### **2）****激励视频广告**
+### 2）激励视频广告
 
 加载激励视频广告
 

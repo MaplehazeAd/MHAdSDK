@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MHAdConfiguration.h</key>
 		<data>
-		xKrJPe6TemYj4NTmLKOAXL2oFRU=
+		06kED0W5B5UNSbTBZcyRTdrEK3I=
 		</data>
 		<key>Headers/MHAdManager.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/MHMacro.h</key>
 		<data>
-		en6Q+4eIQ9vMjWOwdjPl6+e1Npw=
+		za7wXYNTyMznK28tyC2xJxfnpFs=
 		</data>
 		<key>Headers/MHNativeAd.h</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Headers/MHNativeAdView.h</key>
 		<data>
-		9/wcITg102/fUX8waa9R4Y0SL/U=
+		dnAyiJSh2TfxNEciY0KlmEMEED8=
 		</data>
 		<key>Headers/MHRewardedVideoAd.h</key>
 		<data>
@@ -291,11 +291,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xKrJPe6TemYj4NTmLKOAXL2oFRU=
+			06kED0W5B5UNSbTBZcyRTdrEK3I=
 			</data>
 			<key>hash2</key>
 			<data>
-			VpCEJyk/MHy45CLrN7eFeGVA3xt0Qw6e2K2Lsb5fx2g=
+			5E1OjTvhCBR683H22tDcx54NA5DGEp9LjuWBeny4lVs=
 			</data>
 		</dict>
 		<key>Headers/MHAdManager.h</key>
@@ -324,11 +324,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			en6Q+4eIQ9vMjWOwdjPl6+e1Npw=
+			za7wXYNTyMznK28tyC2xJxfnpFs=
 			</data>
 			<key>hash2</key>
 			<data>
-			d+EgtK1Woq3uEwwBpxA7HrVZeHmwstTuDcGcqEJTwpk=
+			6Ff9zNOA6I9Yg3+Nf2apJeJdDEvSRSB9yc5JRK1GCJM=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAd.h</key>
@@ -357,11 +357,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9/wcITg102/fUX8waa9R4Y0SL/U=
+			dnAyiJSh2TfxNEciY0KlmEMEED8=
 			</data>
 			<key>hash2</key>
 			<data>
-			pOh445WDYfOQl1N/twy42fLqhrDFqvzsj498TVjJu9Q=
+			8Daatt8FKyJYtkyi4PoUC6yNvaTDiI+mU7wBq0hfApA=
 			</data>
 		</dict>
 		<key>Headers/MHRewardedVideoAd.h</key>

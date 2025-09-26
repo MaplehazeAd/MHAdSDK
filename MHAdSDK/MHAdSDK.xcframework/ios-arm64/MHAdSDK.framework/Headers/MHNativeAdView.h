@@ -16,14 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MHNativeAdView : UIView
 
 @property(nonatomic, weak) id<MHNativeAdViewDelegate> delegate;
+
 @property(nonatomic, strong) MHNativeAdModel *nativeAdModel;
 
 @property (nonatomic, weak) UIView *adView;
-
-
-- (void)bindAdView:(UIView * _Nonnull)adView
-     nativeAdModel:(MHNativeAdModel * _Nonnull)nativeAdModel;
-- (void)unbindAdView;
 
 @end
 

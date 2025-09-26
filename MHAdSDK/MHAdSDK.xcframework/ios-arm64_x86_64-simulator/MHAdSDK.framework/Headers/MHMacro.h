@@ -71,6 +71,14 @@ static NSString * adDebugExposeReportURLString = @"https://ssp.maplehaze.cn/sdk/
     #endif
 #endif
 
+#define MHOpenLog(x,...) do { \
+    NSDate *now = [NSDate date]; \
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init]; \
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"]; \
+    NSString *timestamp = [NSString stringWithFormat:@"[%@]", [formatter stringFromDate:now]]; \
+    NSLog(@"[MHAdSDK] - %@ %s - %@", timestamp, __FUNCTION__, [NSString stringWithFormat:(x), ##__VA_ARGS__]); \
+} while(0)
+
 #if DEBUG
     #define MHLog(x,...) do { \
         NSDate *now = [NSDate date]; \

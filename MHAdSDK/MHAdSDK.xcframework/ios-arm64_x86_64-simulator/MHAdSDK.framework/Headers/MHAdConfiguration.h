@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 特殊的data数据
 @property(nonatomic, strong) NSArray <MHSpecData *>* specArray;
 
+// 阿里的Aaid
+@property(nonatomic, copy) NSString * aliAaid;
+
 // 是否允许获取本地安装的AppList
 @property(nonatomic, assign) BOOL allowGetAppList;
 
