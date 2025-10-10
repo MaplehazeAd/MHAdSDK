@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) NSInteger mediaFinalEcpm;
 
+@property(nonatomic, assign) BOOL enableDefaultAudioSessionSetting;
+
 @end
 
 NS_ASSUME_NONNULL_END

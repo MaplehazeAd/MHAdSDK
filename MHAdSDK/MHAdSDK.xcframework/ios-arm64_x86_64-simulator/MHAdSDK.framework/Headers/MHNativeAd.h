@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 默认：YES。
 @property (nonatomic, assign) BOOL isMuted;
 
+@property (nonatomic, strong) UIViewController * rootController;
+
 
 - (instancetype)initWithPlacementID:(NSString * _Nonnull)placementID;
 

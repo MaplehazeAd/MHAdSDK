@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)CGSize viewSize;
 
+@property (nonatomic, strong) UIViewController * rootController;
+
 /// 加载广告。
 - (void)loadAd;
 

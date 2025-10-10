@@ -10,7 +10,7 @@ SDK名称：枫岚互联 iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.8
+版本号：1.3.8.1
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -46,6 +46,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.3.6.6     | 激励视频横竖屏兼容                                           | 2025.08.06   |
 | 1.3.7       | 新增功能，支持扭一扭。                                       | 2025.09.12   |
 | 1.3.8       | 新增功能，支持快手SDK                                        | 2025.09.26   |
+| 1.3.8.1     | 新增音频会话设置接口                                         | 2025.10.10   |
 |             |                                                              |              |
 
  
@@ -98,10 +99,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.8'
+  pod 'MHAdSDK', '~> 1.3.8.1'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.8.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.8.1.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
@@ -233,6 +234,8 @@ pod install
     [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
     
     [MHAdConfiguration sharedConfig].allowShake = NO;
+  
+  [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
 }
 ```
 

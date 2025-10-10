@@ -193,19 +193,13 @@
 
 #pragma mark ----- MHCommonTableViewCellDelegate -----
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath *_Nullable)indexPath{
+    [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
     
-    MHSoundChecker *checker = [[MHSoundChecker alloc] init];
-    [checker checkSilentModeWithCompletion:^(BOOL isMuted) {
-        
-        if (isMuted) {
-            NSLog(@"设备处于静音模式");
-            self.rewardedVideoAd.isMuted = YES;
-        } else {
-            NSLog(@"设备未静音");
-            self.rewardedVideoAd.isMuted = self.isMuted;
-        }
-        [self.rewardedVideoAd loadAd];
-    }];
+    self.rewardedVideoAd.isMuted = self.isMuted;
+    [self.rewardedVideoAd loadAd];
 }
 
 - (void)mhCommonTableViewCellCheckBoxDidClick:(NSIndexPath *_Nullable)indexPath isSelect:(BOOL)isSelect{
