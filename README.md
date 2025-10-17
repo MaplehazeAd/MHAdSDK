@@ -48,6 +48,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.3.8       | 新增功能，支持快手SDK                                        | 2025.09.26   |
 | 1.3.8.1     | 新增音频会话设置接口                                         | 2025.10.10   |
 | 1.3.8.2     | 优化广告落地页打开速度                                       | 2025.10.13   |
+| 1.3.8.3     | 提升稳定行，处理1.3.8.2引入的激励视频落地页回调问题          | 2025.10.17   |
 |             |                                                              |              |
 
  
@@ -100,10 +101,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.3.8.2'
+  pod 'MHAdSDK', '~> 1.3.8.3'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.8.2.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.3.8.3.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
@@ -236,7 +237,7 @@ pod install
     
     [MHAdConfiguration sharedConfig].allowShake = NO;
   
-  [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+    [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
 }
 ```
 
