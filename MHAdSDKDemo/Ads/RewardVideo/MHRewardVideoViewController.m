@@ -28,7 +28,7 @@
 @property (nonatomic, strong) MHRewardedVideoAd *rewardedVideoAd;
 
 @property (nonatomic, assign) BOOL isMuted;
-
+@property (nonatomic, assign) BOOL enableAudio;
 @end
 
 @implementation MHRewardVideoViewController
@@ -54,6 +54,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isMuted = YES; // 默认静音
+    self.enableAudio = YES;
     self.title = @"激励视频广告";
     self.view.backgroundColor = [UIColor whiteColor];
     // 自定义返回按钮
@@ -98,6 +99,16 @@
     modeConfigModel.title = @"静音";
     modeConfigModel.isSelect = self.isMuted;
     [configArray addObject:modeConfigModel];
+    
+    if ([MHAdConfiguration sharedConfig].isDebug) {
+        MHCommonCellModel * gdtAudioConfigModel = [[MHCommonCellModel alloc] init];
+        gdtAudioConfigModel.cellType = MHCommonCellTypeSwitch;
+        gdtAudioConfigModel.title = @"系统>App";
+        gdtAudioConfigModel.isSelect = self.enableAudio;
+        [configArray addObject:gdtAudioConfigModel];
+    }
+    
+    
     
     
     [self.dataArray addObject:configArray];
@@ -193,7 +204,7 @@
 
 #pragma mark ----- MHCommonTableViewCellDelegate -----
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath *_Nullable)indexPath{
-    [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
@@ -212,7 +223,11 @@
     if ([title isEqualToString:@"静音"]) {
         self.isMuted = isOpen;
         self.rewardedVideoAd.isMuted = self.isMuted;
-    } 
+    } else {
+        self.enableAudio = isOpen;
+        [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = self.enableAudio;
+    }
+    
 }
 
 #pragma mark ----- MHRewardedVideoAdDelegete -----

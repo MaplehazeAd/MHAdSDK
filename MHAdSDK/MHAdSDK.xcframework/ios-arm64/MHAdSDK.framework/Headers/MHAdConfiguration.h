@@ -40,6 +40,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) NSInteger mediaFinalEcpm;
 
+/// 此接口功能
+/// 1. 设置本单例的 enableDefaultAudioSessionSetting 属性
+/// ----- -----
+/// 在 SDK拉取广告 loadAd 之前调用 [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+/// 设置本单例的 enableDefaultAudioSessionSetting 属性
+
+/// ----- -----
+/// 该接口是私有接口,如果不需要可以不设置;对于GDT如不设置则默认取GDT自身的YES
+/// 需要设置的话,在loadAd之前设置,SDK后续初始化有优量汇SDK 会设置此参数.
+///
+/// ----- 调用示例如下 -----
+/// 1. 初始化配置
+/// [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+/// 2. 注册SDK
+/// [[MHAdManager sharedManager] registerApp];
+/// ----- -----
+/// 
+/// 注意: [AD loadAd]请求广告时,如果我们请求到广点通SDK预算,进行广点通SDK初始化时,会执行 [GDTSDKConfig enableDefaultAudioSessionSetting:BOOL] 把已经设置好的 [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting 作为参数传入
 @property(nonatomic, assign) BOOL enableDefaultAudioSessionSetting;
 
 @end

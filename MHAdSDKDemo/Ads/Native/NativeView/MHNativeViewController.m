@@ -169,10 +169,10 @@
 // 创建广告对象
 - (void)createNativeAd {
     // 获取广告
-    [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = YES;
     self.nativeAd = [[MHNativeAd alloc] initWithPlacementID:self.adID];
     self.nativeAd.isMuted = self.isMuted;
     self.nativeAd.delegate = self;
+    self.nativeAd.rootController = self;
     [self.nativeAd updateAutoPlay:self.isAutoPlayMobileNetwork];
 
 }
@@ -286,7 +286,7 @@
 
     
     if (section == 0) {
-        return 400;
+        return 500;
     }
     return 0;
 }
