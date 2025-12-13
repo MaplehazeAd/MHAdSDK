@@ -58,7 +58,6 @@
     
     // 配置 MHAdSDK 的配置项
     [self configMHAd];
-    //[self configZYAd];
     // 延迟 2 秒后执行代码块
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 这里写延迟执行的代码
@@ -104,38 +103,21 @@
     [MHAdConfiguration sharedConfig].appID = @"10016";
 
 
-    MHSpecData * data1 = [[MHSpecData alloc]init];
-    data1.spec = @"xxxxf125f7ecd76axxxxxxxxxxxxxxxx";
-    data1.spec_v = @"20230330";
-    MHSpecData * data2 = [[MHSpecData alloc]init];
-    data2.spec = @"499f1f0a52204ae1xxxxxxxxxxxxxxxx";
-    data2.spec_v = @"20220111";
-    [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
+//    MHSpecData * data1 = [[MHSpecData alloc]init];
+//    data1.spec = @"xxxxf125f7ecd76axxxxxxxxxxxxxxxx";
+//    data1.spec_v = @"20230330";
+//    MHSpecData * data2 = [[MHSpecData alloc]init];
+//    data2.spec = @"499f1f0a52204ae1xxxxxxxxxxxxxxxx";
+//    data2.spec_v = @"20220111";
+//    [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
+    
+    [MHAdConfiguration sharedConfig].aliAaid = @"test_ali_aaid";
     
     // 可选项
     [MHAdConfiguration sharedConfig].allowShake = NO;
-    
+    [MHAdConfiguration sharedConfig].allowLocation = YES;
+    [MHAdConfiguration sharedConfig].isDeveloperMode = YES;
 }
-
-- (void)configZYAd {
-    // 配置允许SDK使用摇一摇功能
-    // 必要的配置项
-    [MHAdConfiguration sharedConfig].appID = @"11262";
-
-
-    MHSpecData * data1 = [[MHSpecData alloc]init];
-    data1.spec = @"xxxxf125f7ecd76axxxxxxxxxxxxxxxx";
-    data1.spec_v = @"20230330";
-    MHSpecData * data2 = [[MHSpecData alloc]init];
-    data2.spec = @"499f1f0a52204ae1xxxxxxxxxxxxxxxx";
-    data2.spec_v = @"20220111";
-    [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
-    
-    // 可选项
-    [MHAdConfiguration sharedConfig].allowShake = NO;
-    
-}
-
 
 - (void)showMianVC {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -148,34 +130,14 @@
 
 //
 - (void)loadAllAd {
-    // 创建并发队列
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    // 创建组
-    dispatch_group_t group = dispatch_group_create();
-    
-    // 并行加载开屏广告
-    dispatch_group_async(group, queue, ^{
-        [self loadSplashAd];
-    });
-    
+
     // 并行加载原生广告和激励视频广告
     for (int i = 0; i < 10; i++) {
-        dispatch_group_async(group, queue, ^{
-            [self loadSplashAd];
-        });
-        dispatch_group_async(group, queue, ^{
-            [self loadNativeAd];
-        });
-        
-        dispatch_group_async(group, queue, ^{
-            [self loadRewardAd];
-        });
+        [self loadSplashAd];
+        [self loadNativeAd];
+        [self loadRewardAd];
     }
-    
-    // 所有任务完成后的回调
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@"所有广告加载请求已并行触发完成");
-    });
+
 }
 
 

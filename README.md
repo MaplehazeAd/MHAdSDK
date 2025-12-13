@@ -10,7 +10,7 @@ SDK名称：枫岚互联 iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.8.4
+版本号：1.3.8.5
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -50,6 +50,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.3.8.2     | 优化广告落地页打开速度                                       | 2025.10.13   |
 | 1.3.8.3     | 提升稳定行，处理1.3.8.2引入的激励视频落地页回调问题          | 2025.10.17   |
 | 1.3.8.4     | 优化音频设置                                                 | 2025.11.05   |
+| 1.3.8.5     | 新增允许获取位置的接口                                       | 2025.12.13   |
 |             |                                                              |              |
 
  
@@ -237,7 +238,8 @@ pod install
     [MHAdConfiguration sharedConfig].specArray = @[data1, data2];
     
     [MHAdConfiguration sharedConfig].allowShake = NO;
-  
+    // 是否允许SDK 获取位置信息，默认YES-允许
+    [MHAdConfiguration sharedConfig].allowLocation = NO;
     [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
 }
 ```
