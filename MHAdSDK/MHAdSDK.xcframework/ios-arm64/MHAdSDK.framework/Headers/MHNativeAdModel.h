@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MHNativeAdCouponModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,14 +34,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// ecpm
 @property (nonatomic, readonly) NSInteger ecpm;
 
-
-
+@property (nonatomic, readonly, strong) MHNativeAdCouponModel * coupon;
 
 // 竞胜上报
 - (void)sendWinNotification:(NSInteger)ecpm;
 
 // 竞败上报
 - (void)sendLossNotification:(NSInteger)ecpm;
+
+// 获取logo+文字图
+- (UIImage *)getAdLogoDrawableRes;
+// 单广告logo图片
+- (UIImage *)getAdLogoImageDrawableRes;
+// 单广告获取名字
+- (NSString *)getAdLogoName;
 
 @end
 

@@ -14,19 +14,23 @@
 		</data>
 		<key>Headers/MHAdSDK.h</key>
 		<data>
-		fSXJrUyYFfE5l0SLXtTb1UcvKU0=
+		pWl8SkqMpcaiZ9T3+rquk8hvUjM=
 		</data>
 		<key>Headers/MHMacro.h</key>
 		<data>
-		za7wXYNTyMznK28tyC2xJxfnpFs=
+		ldWm+b0X7THeN2EmUAcgcXF1Ky4=
 		</data>
 		<key>Headers/MHNativeAd.h</key>
 		<data>
 		gJCZkxc28BDoC18cbaQpTCZHrLg=
 		</data>
+		<key>Headers/MHNativeAdCouponModel.h</key>
+		<data>
+		OmGDXLIVYHmd80SiZCHGMVWr5J4=
+		</data>
 		<key>Headers/MHNativeAdModel.h</key>
 		<data>
-		Gwx1ptyLRBhDPRl9Bj/XTkq7qUo=
+		rRTgYK8TIDOl0wAbgASHU7uTwR4=
 		</data>
 		<key>Headers/MHNativeAdView.h</key>
 		<data>
@@ -60,10 +64,6 @@
 		<data>
 		pPsH9VVC0BBqIcqDG7C+J7CUWxw=
 		</data>
-		<key>MHAdSDK.bundle/app_logo.png</key>
-		<data>
-		wMYt0vfUPK8FeOWL8qiXUnQ14lI=
-		</data>
 		<key>MHAdSDK.bundle/audio_mute.png</key>
 		<data>
 		XxPdbng4XmH7A3pzuELPCayRByo=
@@ -87,6 +87,18 @@
 		<key>MHAdSDK.bundle/mh_close_page.png</key>
 		<data>
 		VBNrZrV0L+dSn4J7D1dJ8rd0K4s=
+		</data>
+		<key>MHAdSDK.bundle/mh_coupon_close.png</key>
+		<data>
+		H+QG9O0hfzPK4Ea0xcyuIstQ+hQ=
+		</data>
+		<key>MHAdSDK.bundle/mh_coupon_rewardedvideo.png</key>
+		<data>
+		IR3QOfGwFuS/Q2PyuWa1v5fe49o=
+		</data>
+		<key>MHAdSDK.bundle/mh_coupon_splash.png</key>
+		<data>
+		7Bckz8LVaQ2tj0+EpCIJTv9k7QI=
 		</data>
 		<key>MHAdSDK.bundle/mh_ext_ic_mute.png</key>
 		<data>
@@ -127,6 +139,30 @@
 		<key>MHAdSDK.bundle/mh_guide_two/mh_ad_guide2_coin.png</key>
 		<data>
 		bv5XcmbAmvtMwZSB7zsU56lm73Y=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_empty_all.png</key>
+		<data>
+		J7Ed0zdJ7a3HyRL56TmIW+dEDxs=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_empty_icon.png</key>
+		<data>
+		/yEWmCwAHWiP0Pg2bk2BS4CYk+Y=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_la_all.png</key>
+		<data>
+		8FBG/NA3SCGLez+jr+pkb0O3dSI=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_la_icon.png</key>
+		<data>
+		Y12v+djrs/44yDDEIrybo8Zbbf0=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_mh_all.png</key>
+		<data>
+		ke73xR7LLNou+PAwlKnU3IbLPnc=
+		</data>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_mh_icon.png</key>
+		<data>
+		nTefx2ssmGiWhH67/yipHNdapXs=
 		</data>
 		<key>MHAdSDK.bundle/mh_reward_back.png</key>
 		<data>
@@ -313,22 +349,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			fSXJrUyYFfE5l0SLXtTb1UcvKU0=
+			pWl8SkqMpcaiZ9T3+rquk8hvUjM=
 			</data>
 			<key>hash2</key>
 			<data>
-			uCSXavaTy/uOUWt32DWGehSTW3MScYuQeUUSn0Qdid0=
+			AGI3qHo5b9fpHfHZyMKhJJvyEJwKJI9cRwXWDDHxHSY=
 			</data>
 		</dict>
 		<key>Headers/MHMacro.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			za7wXYNTyMznK28tyC2xJxfnpFs=
+			ldWm+b0X7THeN2EmUAcgcXF1Ky4=
 			</data>
 			<key>hash2</key>
 			<data>
-			6Ff9zNOA6I9Yg3+Nf2apJeJdDEvSRSB9yc5JRK1GCJM=
+			ly3syXz/NGQy+qD/o7S/xkqkl6uYV9TyNiqwC9VNl3s=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAd.h</key>
@@ -342,15 +378,26 @@
 			3i54QI63wX3H9KQ4olTQfhScBiK3P8YeJ45/3xAKkSY=
 			</data>
 		</dict>
+		<key>Headers/MHNativeAdCouponModel.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			OmGDXLIVYHmd80SiZCHGMVWr5J4=
+			</data>
+			<key>hash2</key>
+			<data>
+			mKzsY1YodtIbiSdiyLPAfedwFUx1U6GB59Q4YNXEvbs=
+			</data>
+		</dict>
 		<key>Headers/MHNativeAdModel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Gwx1ptyLRBhDPRl9Bj/XTkq7qUo=
+			rRTgYK8TIDOl0wAbgASHU7uTwR4=
 			</data>
 			<key>hash2</key>
 			<data>
-			+/LnkhayF7usOon+xpvLZQ5UQcDZyL9OwaFRslF8trY=
+			NRmAaK2uzTh5AUZnhtw39ttZvTv04NI/S22nK6iFfhY=
 			</data>
 		</dict>
 		<key>Headers/MHNativeAdView.h</key>
@@ -430,17 +477,6 @@
 			3Y1j/mTvwtbt6wQONQrpS177bcxSOor+Dcb20DNR8UE=
 			</data>
 		</dict>
-		<key>MHAdSDK.bundle/app_logo.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			wMYt0vfUPK8FeOWL8qiXUnQ14lI=
-			</data>
-			<key>hash2</key>
-			<data>
-			HN8WMqCmLroo5hGDczLLLlXQMu/8lWldQmsqcGGSk3k=
-			</data>
-		</dict>
 		<key>MHAdSDK.bundle/audio_mute.png</key>
 		<dict>
 			<key>hash</key>
@@ -505,6 +541,39 @@
 			<key>hash2</key>
 			<data>
 			g8hT6vhPDnoUWB1qpc6FWHoVnNfw6ryHdfbtufYG9Kc=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_coupon_close.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			H+QG9O0hfzPK4Ea0xcyuIstQ+hQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			/8B0MaJuxAQ0v0INTbjxg9KPiFOeJSaIu7WAS5zgnQ8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_coupon_rewardedvideo.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IR3QOfGwFuS/Q2PyuWa1v5fe49o=
+			</data>
+			<key>hash2</key>
+			<data>
+			rdBh61WcBFzkOZIZwviZcP6LzydUltwYWb7HUy6054g=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_coupon_splash.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			7Bckz8LVaQ2tj0+EpCIJTv9k7QI=
+			</data>
+			<key>hash2</key>
+			<data>
+			mmQl4qF57EG0pN/C3YQvGmzlZEF8B11jb4ffil4T7cs=
 			</data>
 		</dict>
 		<key>MHAdSDK.bundle/mh_ext_ic_mute.png</key>
@@ -615,6 +684,72 @@
 			<key>hash2</key>
 			<data>
 			6PblMudsJBRJHJs4UYUqyQcqO3ROudndEL2NifEWqgo=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_empty_all.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			J7Ed0zdJ7a3HyRL56TmIW+dEDxs=
+			</data>
+			<key>hash2</key>
+			<data>
+			OihNE/GmeNqK7qfJzW1wKeQ/ekR3Md80KJgeOZZukis=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_empty_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			/yEWmCwAHWiP0Pg2bk2BS4CYk+Y=
+			</data>
+			<key>hash2</key>
+			<data>
+			rJGOkkUWh7rCwXoTnrJSj9RQwrTfzBacqudELYiInA8=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_la_all.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			8FBG/NA3SCGLez+jr+pkb0O3dSI=
+			</data>
+			<key>hash2</key>
+			<data>
+			ulN1xzT0X30OoNrZbor8UCIgwjAR1amaP3vE4pGT7ow=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_la_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Y12v+djrs/44yDDEIrybo8Zbbf0=
+			</data>
+			<key>hash2</key>
+			<data>
+			uIPtNenoo5U6LCgxF1CXhuOENLM5GshVs3ROz4KIaf0=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_mh_all.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ke73xR7LLNou+PAwlKnU3IbLPnc=
+			</data>
+			<key>hash2</key>
+			<data>
+			pPBkN+GqnOURwmGmgWVAB3k7K9Mee+0L5yDyRbj+ui4=
+			</data>
+		</dict>
+		<key>MHAdSDK.bundle/mh_logo/mh_logo_mh_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nTefx2ssmGiWhH67/yipHNdapXs=
+			</data>
+			<key>hash2</key>
+			<data>
+			cqW25qowY48DdXT3ABWR3WBYmaGMucLNWBR9jzlHkgc=
 			</data>
 		</dict>
 		<key>MHAdSDK.bundle/mh_reward_back.png</key>

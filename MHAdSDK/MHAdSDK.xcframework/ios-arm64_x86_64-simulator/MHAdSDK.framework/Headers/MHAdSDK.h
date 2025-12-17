@@ -19,6 +19,7 @@
 // 原生广告
 #import <MHAdSDK/MHNativeAd.h>
 #import <MHAdSDK/MHNativeAdModel.h>
+#import <MHAdSDK/MHNativeAdCouponModel.h>
 #import <MHAdSDK/MHNativeAdView.h>
 
 // 开屏广告
