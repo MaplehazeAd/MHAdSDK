@@ -8,7 +8,7 @@
 #import "MHCommonTableViewCell.h"
 #import "Masonry.h"
 
-@interface MHCommonTableViewCell ()
+@interface MHCommonTableViewCell ()<UITextFieldDelegate>
 
 //
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -67,6 +67,9 @@
     
     self.inputTextField = [[UITextField alloc] init];
     self.inputTextField.placeholder = @"请输入";
+    [self.inputTextField addTarget:self
+                            action:@selector(textFieldDidEditingChange:)
+                  forControlEvents:UIControlEventEditingChanged];
     self.inputTextField.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:self.inputTextField];
     [self.inputTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,6 +186,16 @@
             break;
         default:
             break;
+    }
+}
+
+- (void)textFieldDidEditingChange:(UITextField *)textField {
+    // 直接使用 textField.text 就是最新的完整字符串
+    NSString *fullText = textField.text;
+    NSLog(@"文本已改变：%@", fullText);
+    // 这里可以进行你的业务逻辑，如搜索、按钮状态更新等
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mhCommonTableViewCellTextFieldValueChanged:text:)]) {
+        [self.delegate mhCommonTableViewCellTextFieldValueChanged:self.indexPath text:fullText];
     }
 }
 

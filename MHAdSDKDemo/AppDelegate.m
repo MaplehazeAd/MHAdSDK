@@ -86,10 +86,6 @@
     });
     
     [self showMianVC];
-//    for (int i = 0; i < 10; i++) {
-//        [self loadAllAd];
-//    }
-
     
     return YES;
 }
@@ -116,7 +112,6 @@
     // 可选项
     [MHAdConfiguration sharedConfig].allowShake = NO;
     [MHAdConfiguration sharedConfig].allowLocation = YES;
-    [MHAdConfiguration sharedConfig].isDeveloperMode = YES;
 }
 
 - (void)showMianVC {

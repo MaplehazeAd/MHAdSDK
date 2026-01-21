@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, strong) MHNativeAdCouponModel * coupon;
 
+@property (nonatomic, strong, readonly) NSDictionary * extraInfo;
+
+
 // 竞胜上报
 - (void)sendWinNotification:(NSInteger)ecpm;
 

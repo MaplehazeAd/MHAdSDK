@@ -64,7 +64,8 @@
     self.isMuted = YES;
     self.isAutoPlayMobileNetwork = YES;
     self.adCount = 1;
-    
+    // 添加点击手势来收回键盘
+    [self addTapGestureToDismissKeyboard];
     [self getData];
     
     [self layoutAllSubviews];
@@ -93,6 +94,23 @@
     
     [self.nativeTableView reloadData];
     
+}
+
+// 添加点击手势
+- (void)addTapGestureToDismissKeyboard {
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    // 设置cancelsTouchesInView为NO，确保不影响其他控件的触摸事件
+    tapGesture.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+// 处理点击事件
+- (void)handleTap:(UITapGestureRecognizer *)gesture {
+    // 收回键盘
+    [self.view endEditing:YES];
+    
+    // 如果还有其他需要收回的第一响应者，可以在这里添加
+    // [self.someTextField resignFirstResponder];
 }
 
 - (void)getData {
@@ -196,6 +214,8 @@
 }
 
 - (void)dealloc {
+    [self closeAd];
+    self.nativeAd = nil;
     NSLog(@"原生广告页面 dealloc");
 }
 
@@ -320,17 +340,21 @@
         
         
     } else if ([title isEqualToString:@"关闭广告"]) {
-        self.hasAdData = NO;
-        [self.nativeAd unregisterView];
-        [self removeCloseAdData];
-        [self.adArray removeAllObjects];
-        [self.nativeTableView reloadData];
-        
-        self.isAdSectionVisible = YES;
-        NSString *rightTitle = self.isAdSectionVisible ? @"隐藏广告" : @"显示广告";
-        self.navigationItem.rightBarButtonItem.title = rightTitle;
+        [self closeAd];
     }
    
+}
+
+- (void)closeAd {
+    self.hasAdData = NO;
+    [self.nativeAd unregisterView];
+    [self removeCloseAdData];
+    [self.adArray removeAllObjects];
+    [self.nativeTableView reloadData];
+    
+    self.isAdSectionVisible = YES;
+    NSString *rightTitle = self.isAdSectionVisible ? @"隐藏广告" : @"显示广告";
+    self.navigationItem.rightBarButtonItem.title = rightTitle;
 }
 
 - (void)mhCommonTableViewCellCheckBoxDidClick:(NSIndexPath * _Nullable)indexPath isSelect:(BOOL)isSelect {
@@ -371,6 +395,9 @@
     [self.nativeTableView reloadData];
 }
 
+- (void)mhCommonTableViewCellTextFieldValueChanged:(NSIndexPath *_Nullable)indexPath text:(NSString *)text {
+    self.adID = text;
+}
 
 #pragma mark ----- MHNativeAdDelegete
 /// 广告已经展示。
@@ -436,6 +463,8 @@
     self.hasAdData = YES;
     [self.adArray removeAllObjects];
     
+    
+    
     [self.view makeToast:@"nativeAd 广告已经获取" duration:2.0F position:CSToastPositionBottom];
     
     for (int i = 0 ; i< nativeAdModels.count; i++) {
@@ -443,6 +472,15 @@
         
         // 我需要打印 nativeAdModel 对象的地址
         NSLog(@"nativeAdDidLoad nativeAdModel 地址[%d]: %p", i, nativeModel);
+        NSLog(@"优惠券: %@", nativeModel.coupon);
+        if (nativeModel.coupon) {
+            NSLog(@"优惠券类型: %ld", nativeModel.coupon.couponType);
+            NSLog(@"优惠券金额: %ld", nativeModel.coupon.couponValue);
+            NSLog(@"优惠券有效期: %ld", nativeModel.coupon.couponTime);
+            NSLog(@"优惠券满减金额: %ld", nativeModel.coupon.couponThreshold);
+        }
+        
+        NSLog(@"nativeAdDidLoad extraInfo: %@", nativeModel.extraInfo);
         
         NSInteger nativeEcpm = nativeModel.ecpm;
         NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm[%d]: %ld",i, nativeEcpm];
@@ -481,6 +519,5 @@
     NSString *toastMessage = [NSString stringWithFormat:@"nativeAd 广告错误 错误码:%ld reason: %@", errorCode, errorMessage];
     [self.view makeToast:toastMessage duration:2.0F position:CSToastPositionCenter];
 }
-
 
 @end

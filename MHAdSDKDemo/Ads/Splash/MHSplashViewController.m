@@ -41,15 +41,13 @@
     backButton.accessibilityIdentifier = @"MHSplashViewController_BackButtonItem";
     self.navigationItem.leftBarButtonItem = backButton;
     // Do any additional setup after loading the view.
+    // 添加点击手势来收回键盘
+    [self addTapGestureToDismissKeyboard];
+    
     [self getData];
     [self layoutAllSubviews];
     
-    // 获取广告
-    self.splashAd = [[MHSplashAd alloc] initWithPlacementID:self.adID];
-    self.splashAd.delegate = self;
-    CGFloat viewWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat adHeighr = [UIScreen mainScreen].bounds.size.height - 120;
-    self.splashAd.viewSize = CGSizeMake(viewWidth, adHeighr);
+    
 }
 
 - (BOOL)shouldAutorotate {
@@ -77,6 +75,23 @@
     
     [self.splashTableView reloadData];
     
+}
+
+// 添加点击手势
+- (void)addTapGestureToDismissKeyboard {
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    // 设置cancelsTouchesInView为NO，确保不影响其他控件的触摸事件
+    tapGesture.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+// 处理点击事件
+- (void)handleTap:(UITapGestureRecognizer *)gesture {
+    // 收回键盘
+    [self.view endEditing:YES];
+    
+    // 如果还有其他需要收回的第一响应者，可以在这里添加
+    // [self.someTextField resignFirstResponder];
 }
 
 - (void)getData {
@@ -206,7 +221,15 @@
 
 #pragma mark - MHCommonTableViewCellDelegate
 - (void)mhCommonTableViewCellButtonDidClick:(NSIndexPath * _Nullable)indexPath {
+    // 获取广告
+    self.splashAd = [[MHSplashAd alloc] initWithPlacementID:self.adID];
+    self.splashAd.delegate = self;
+    CGFloat viewWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat adHeight = [UIScreen mainScreen].bounds.size.height - 120;
+    self.splashAd.viewSize = CGSizeMake(viewWidth, adHeight);
     
+    /// 这里必须传入 当前的根视图控制器,用来present广告视图,以及打开落地页等
+    self.splashAd.rootController = self;
     [self.splashAd loadAd];
 }
 
@@ -216,6 +239,10 @@
 
 - (void)mhCommonTableViewCellSwitchDidClick:(NSIndexPath * _Nullable)indexPath isOpen:(BOOL)isOpen {
     
+}
+
+- (void)mhCommonTableViewCellTextFieldValueChanged:(NSIndexPath *_Nullable)indexPath text:(NSString *)text {
+    self.adID = text;
 }
 
 #pragma mark - MHSplashAdDelegete

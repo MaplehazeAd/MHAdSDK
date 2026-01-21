@@ -17,6 +17,8 @@
 
 - (void)mhCommonTableViewCellSwitchDidClick:(NSIndexPath *_Nullable)indexPath isOpen:(BOOL)isOpen;
 
+- (void)mhCommonTableViewCellTextFieldValueChanged:(NSIndexPath *_Nullable)indexPath text:(NSString *)text;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN

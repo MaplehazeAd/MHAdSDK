@@ -55,6 +55,7 @@
     self.nativeAdView = [[NativeView alloc] initWithFrame:CGRectMake(16, 8, adWidth, adHeight)];
     [self.nativeAdView updateTag:1];
     self.nativeAdView.adView.tag = 1;
+   
     [self.adView addSubview:self.nativeAdView];
     [self.nativeAdView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.top.equalTo(self.adView);
@@ -76,7 +77,8 @@
     self.nativeAdView.titleLabel.text = nativeAdModel.title ? nativeAdModel.title : nativeAdModel.actionText;
     [self.nativeAdView.adButton setTitle:nativeAdModel.actionText ? nativeAdModel.actionText : @"了解更多" forState:UIControlStateNormal];
     self.nativeAdView.descriptionLabel.text = nativeAdModel.description;
-    
+    self.nativeAdView.logoImageView.image = [self.boundAdModel getAdLogoImageDrawableRes];
+    self.nativeAdView.adLabel.text = [self.boundAdModel getAdLogoName];
     if (nativeAdModel.iconURL == nil) {
         self.nativeAdView.iconImageView.hidden = YES;
     } else {

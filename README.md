@@ -52,6 +52,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.3.8.4     | 优化音频设置                                                 | 2025.11.05   |
 | 1.3.8.5     | 新增允许获取位置的接口                                       | 2025.12.13   |
 | 1.4.0       | 1. 新增优惠券功能<br />2. 优化摇一摇逻辑<br />3. 优化位置获取逻辑<br />4. 升级各个SDK<br />5. 原生广告新增 logo 返回 | 2025.12.17   |
+| 1.4.1       | 优化开屏广告架构，采用VC承载开屏页面                         | 2026.01.21   |
 |             |                                                              |              |
 
  
@@ -104,16 +105,16 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.0'
+  pod 'MHAdSDK', '~> 1.4.1'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.0.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.1.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
   # 以下是三方的SDK
   # 爱奇艺，在v1.16.008开始支持Cocoapods接入
-  pod 'iAdSDK', '~> 1.23.002'
+  pod 'iAdSDK', '~> 1.23.003'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
   pod 'GDTMobSDK', '~> 4.15.65'
@@ -277,6 +278,9 @@ pod install
     self.splashAd = [[MHSplashAd alloc] initWithPlacementID:self.adID];
     self.splashAd.isMuted = YES;
     self.splashAd.delegate = self;
+    // 重要！！！
+    // 1.4.1版本以后开屏广告架构调整，采用VC承载开屏页面，因此必须传入根视图控制器来进行广告或落地页的展示。
+    self.splashAd.rootController = self;
     [self.splashAd loadAd];
 }
  

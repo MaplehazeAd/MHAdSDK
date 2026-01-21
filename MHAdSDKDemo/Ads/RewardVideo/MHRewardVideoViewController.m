@@ -64,10 +64,11 @@
                                                                   action:@selector(backButtonTapped)];
     backButton.accessibilityIdentifier = @"MHRewardVideoViewController_BackButtonItem";
     self.navigationItem.leftBarButtonItem = backButton;
+    // 添加点击手势来收回键盘
+    [self addTapGestureToDismissKeyboard];
     [self getData];
     
-    self.rewardedVideoAd = [[MHRewardedVideoAd alloc] initWithPlacementID:self.adID];
-    self.rewardedVideoAd.delegate = self;
+    
     [self layoutAllSubviews];
 }
 
@@ -78,6 +79,23 @@
 
 - (void)backButtonTapped{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+// 添加点击手势
+- (void)addTapGestureToDismissKeyboard {
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    // 设置cancelsTouchesInView为NO，确保不影响其他控件的触摸事件
+    tapGesture.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+// 处理点击事件
+- (void)handleTap:(UITapGestureRecognizer *)gesture {
+    // 收回键盘
+    [self.view endEditing:YES];
+    
+    // 如果还有其他需要收回的第一响应者，可以在这里添加
+    // [self.someTextField resignFirstResponder];
 }
 
 - (void)getData {
@@ -209,6 +227,8 @@
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
     
+    self.rewardedVideoAd = [[MHRewardedVideoAd alloc] initWithPlacementID:self.adID];
+    self.rewardedVideoAd.delegate = self;
     self.rewardedVideoAd.isMuted = self.isMuted;
     [self.rewardedVideoAd loadAd];
 }
@@ -228,6 +248,10 @@
         [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = self.enableAudio;
     }
     
+}
+
+- (void)mhCommonTableViewCellTextFieldValueChanged:(NSIndexPath *_Nullable)indexPath text:(NSString *)text {
+    self.adID = text;
 }
 
 #pragma mark ----- MHRewardedVideoAdDelegete -----
