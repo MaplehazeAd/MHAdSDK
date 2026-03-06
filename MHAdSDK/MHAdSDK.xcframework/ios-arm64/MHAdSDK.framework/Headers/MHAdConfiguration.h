@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 // debug 模式下会输出日志,默认NO,需要日志的话请设置YES
 @property(nonatomic, assign) BOOL isDebug;
 
+@property(nonatomic, assign) BOOL isReleaseEnv; // 默认YES
+
 // 开发者模式.默认NO
 @property(nonatomic, assign) BOOL isDeveloperMode;
 

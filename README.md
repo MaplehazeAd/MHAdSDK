@@ -10,7 +10,7 @@ SDK名称：枫岚互联 iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.3.8.5
+版本号：1.4.2
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -53,7 +53,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.3.8.5     | 新增允许获取位置的接口                                       | 2025.12.13   |
 | 1.4.0       | 1. 新增优惠券功能<br />2. 优化摇一摇逻辑<br />3. 优化位置获取逻辑<br />4. 升级各个SDK<br />5. 原生广告新增 logo 返回 | 2025.12.17   |
 | 1.4.1       | 优化开屏广告架构，采用VC承载开屏页面                         | 2026.01.21   |
-|             |                                                              |              |
+| 1.4.2       | 1. 处理多线程高并发获取系统配置问题<br />2. 优化多线程获取逻辑<br />3. 优化开屏界面效果<br />4. 新增本地缓存机制 | 2026.03.05   |
 
  
 
@@ -105,25 +105,23 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.1'
+  pod 'MHAdSDK', '~> 1.4.2'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.1.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.2.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
   # 以下是三方的SDK
   # 爱奇艺，在v1.16.008开始支持Cocoapods接入
-  pod 'iAdSDK', '~> 1.23.003'
+  pod 'iAdSDK', '~> 2.2.301'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
-  pod 'GDTMobSDK', '~> 4.15.65'
+  pod 'GDTMobSDK', '~> 4.15.75'
   # 京东
   pod 'JADYun'
   pod 'JADYunMotion'
   
-  # 快手SDK
-  pod 'KSAdSDK', '~> 4.8.10.1'
   # 微信 Open SDK
   pod 'WechatOpenSDK', '2.0.4'
 end

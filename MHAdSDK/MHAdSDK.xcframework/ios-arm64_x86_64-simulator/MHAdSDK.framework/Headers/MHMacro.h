@@ -33,9 +33,20 @@ static NSString * adDebugExposeReportURLString = @"https://ssp.maplehaze.cn/sdk/
 #define MH_IS_DEBUG ([MHAdConfiguration sharedConfig].isDebug)
 
 // 安全字典设置宏（防nil值、防非可变字典、防空key）
-#define MH_DIC_SAFE_SET(dic, key, value) do { \
-    if ([(dic) isKindOfClass:[NSMutableDictionary class]] && (key) != nil && (value) != nil) { \
-        [(NSMutableDictionary *)(dic) setObject:(value) forKey:(key)]; \
+//#define MH_DIC_SAFE_SET(dic, key, value) do { \
+//    if ([(dic) isKindOfClass:[NSMutableDictionary class]] && (key) != nil && (value) != nil) { \
+//        [(NSMutableDictionary *)(dic) setObject:(value) forKey:(key)]; \
+//    } \
+//} while(0)
+
+// ✨ 更安全的宏，支持任意表达式且只求值一次
+#define MH_DIC_SAFE_SET(dic, key, value) \
+do { \
+    id __dic = (dic); \
+    id __key = (key); \
+    __strong id __value = (value); /* 强引用，防止释放 */ \
+    if ([__dic isKindOfClass:[NSMutableDictionary class]] && __key != nil && __value != nil) { \
+        [__dic setObject:__value forKey:__key]; \
     } \
 } while(0)
 
