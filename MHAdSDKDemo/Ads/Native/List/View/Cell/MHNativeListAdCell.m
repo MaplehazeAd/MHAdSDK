@@ -11,8 +11,9 @@
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
 
+#import "NativeCouponView.h"
 
-@interface MHNativeListAdCell ()
+@interface MHNativeListAdCell ()<NativeCouponViewDelegate>
 {
     
 }
@@ -22,6 +23,8 @@
 
 // MHNativeListAdCell.h 或者 .m 的 interface 区域
 @property (nonatomic, strong) MHNativeAdModel *boundAdModel;
+
+@property (strong, nonatomic) NativeCouponView * couponView; // 优惠券页面
 
 @end
 
@@ -62,6 +65,16 @@
         make.centerX.equalTo(self.adView);
         make.height.mas_equalTo(adHeight);
     }];
+    
+    self.couponView = [[NativeCouponView alloc] initWithFrame:CGRectMake(16, 8, adWidth, adHeight)];
+    self.couponView.delegate = self;
+    self.couponView.hidden = YES;
+    [self.nativeAdView addSubview:self.couponView];
+    [self.couponView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.centerX.equalTo(self.nativeAdView);
+        make.leading.equalTo(self.nativeAdView).offset(16);
+        make.height.mas_equalTo(76);
+    }];
 }
 
 - (void)setCell:(MHNativeAdModel *)nativeAdModel {
@@ -88,11 +101,29 @@
 
     // 4. 设置广告模型到广告视图
     self.nativeAdView.adView.nativeAdModel = nativeAdModel;
-    // 尽量不要在
-    [self.nativeAd showInViews:@[self.nativeAdView.adView] withClickableViewsArray:@[
-//     @[self.adView, self.nativeAdView.adButton, self.adView],
-     @[self.nativeAdView.adButton]
-    ]];
+    
+    // 构建基础可点击视图数组（始终包含 adButton）
+    NSMutableArray *clickableViews = [NSMutableArray arrayWithObject:self.nativeAdView.adButton];
+
+    // 如果有 coupon，添加 couponView
+    if (nativeAdModel.coupon) {
+        self.couponView.hidden = NO;
+        [self.couponView updateUIWithCouponModel: nativeAdModel.coupon];
+        [clickableViews addObject:self.couponView.getButton];
+    }
+
+    // 调用 showInViews，clickableViewsArray 需要包一层数组
+    [self.nativeAd showInViews:@[self.nativeAdView.adView]
+        withClickableViewsArray:@[clickableViews]];
+}
+
+#pragma mark - NativeCouponViewDelegate
+
+
+/// 点击关闭按钮
+- (void)nativeCouponViewDidClickClose:(NativeCouponView *)couponView
+{
+    couponView.hidden = YES;
 }
 
 - (void)awakeFromNib {

@@ -306,7 +306,7 @@
 
     
     if (section == 0) {
-        return 500;
+        return 50;
     }
     return 0;
 }
