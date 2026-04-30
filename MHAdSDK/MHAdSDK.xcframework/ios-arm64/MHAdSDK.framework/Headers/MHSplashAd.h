@@ -34,6 +34,14 @@
 - (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd
                       placementID:(NSString * _Nullable)placementID;
 
+/// 开屏广告进入全屏广告
+- (void)splashAdDidPresentFullScreen:(MHSplashAd * _Nullable)splashAd
+                         placementID:(NSString *_Nullable)placementID;
+
+/// 开屏广告离开全屏广告
+- (void)splashAdDidDismissFullScreen:(MHSplashAd * _Nullable)splashAd
+                         placementID:(NSString *_Nullable)placementID;
+
 
 @end
 
@@ -53,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)CGSize viewSize;
 
-@property (nonatomic, strong) UIViewController * rootController;
+@property (nonatomic, weak) UIViewController * rootController;
 
 /// 加载广告。
 - (void)loadAd;

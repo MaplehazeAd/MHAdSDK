@@ -49,6 +49,18 @@ NS_ASSUME_NONNULL_BEGIN
                    adView:(MHNativeAdView *)adView
             nativeAdModel:(MHNativeAdModel *)nativeAdModel;
 
+/// 广告详情页已展示。
+- (void)nativeAdDetailViewDidAppear:(MHNativeAd *)nativeAd
+                        placementID:(NSString *)placementID
+                             adView:(MHNativeAdView *)adView
+                      nativeAdModel:(MHNativeAdModel *)nativeAdModel;
+
+/// 广告详情页已关闭。
+- (void)nativeAdDetailViewDidClose:(MHNativeAd *)nativeAd
+                       placementID:(NSString *)placementID
+                            adView:(MHNativeAdView *)adView
+                     nativeAdModel:(MHNativeAdModel *)nativeAdModel;
+
 @end
 
 /// 原生广告。

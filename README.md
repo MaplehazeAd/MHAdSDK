@@ -55,6 +55,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.1       | 优化开屏广告架构，采用VC承载开屏页面                         | 2026.01.21   |
 | 1.4.2       | 1. 处理多线程高并发获取系统配置问题<br />2. 优化多线程获取逻辑<br />3. 优化开屏界面效果<br />4. 新增本地缓存机制 | 2026.03.05   |
 | 1.4.3       | 1. 新增原生自渲染优惠券样例<br />2. 优化回调逻辑             | 2026.04.08   |
+| 1.4.4       | 1. 优化开屏和原生UI<br />2. 新增开屏和原生落地页拉起关闭回调<br />3. 优化开屏close回调逻辑 |              |
 |             |                                                              |              |
 
  
@@ -107,10 +108,10 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.3'
+  pod 'MHAdSDK', '~> 1.4.4'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.3.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.4.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
