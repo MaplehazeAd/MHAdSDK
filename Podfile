@@ -21,9 +21,9 @@ target 'MHAdSDKDemo' do
   
   # 以下是依赖的各个平台的SDK
   # 优量汇
-  pod 'GDTMobSDK', '~> 4.15.80'
+  pod 'GDTMobSDK', '~> 4.15.90'
   # 爱奇艺
-  pod 'iAdSDK', '~> 2.3.201'
+  pod 'iAdSDK', '~> 2.4.005'
   # jdsdk
   #pod 'JADYun'
   #pod 'JADYunMotion'
