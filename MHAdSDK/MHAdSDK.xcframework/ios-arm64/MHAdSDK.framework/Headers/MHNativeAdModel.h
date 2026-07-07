@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MHNativeAdCouponModel.h"
+#import "MHAdExtraInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)getAdLogoImageDrawableRes;
 // 单广告获取名字
 - (NSString *)getAdLogoName;
+
+- (MHAdExtraInfo *)getExtraInfo;
 
 @end
 

@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MHAdExtraInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -77,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 竞败上报
 - (void)sendLossNotification:(NSInteger)ecpm;
 
+- (MHAdExtraInfo *)getExtraInfo;
 
 @end
 

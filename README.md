@@ -59,7 +59,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.4.1     | 1. 优化落地页兼容性                                          | 2026.05.08   |
 | 1.4.4.2     | 1. 优化激励落地页效果<br />2. 优化获取视频宽高               | 2026.05.14   |
 | 1.4.4.6     | 1. 解决已知问题<br />2. 原生性能增强<br />3. 优化播放器逻辑<br />4. 处理webPageManager | 2026.06.16   |
-|             |                                                              |              |
+| 1.4.5       | 1. 优惠券新增类型无门槛立减（type=2），新增优惠券来源和免责声明字段<br />2. 优化高并发请求，新增最大并发请求书，CPU降频优化<br />3. 新增 ExtraInfo 信息接口<br />4. 处理单例打开商店页导致的问题<br />5. 优化开屏present逻辑<br />6. 处理AFN hack 冲突问题 | 2026.07.07   |
 
  
 
@@ -111,16 +111,16 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.4.6'
+  pod 'MHAdSDK', '~> 1.4.5'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.4.6.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.5.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
   # 以下是三方的SDK
   # 爱奇艺，在v1.16.008开始支持Cocoapods接入
-  pod 'iAdSDK', '~> 2.4.005'
+  pod 'iAdSDK', '~> 2.5.002'
   # 以下是各个平台的SDK接入参考，请根据实际需要和支持情况进行选择
   # 优量汇
   pod 'GDTMobSDK', '~> 4.15.90'
@@ -406,11 +406,30 @@ pod install
 
 
 
+开屏广告获取额外信息
+
+获取开屏广告成功后，可以获得该广告的额外信息。
+
+```objective-c
+- (MHAdExtraInfo *)getExtraInfo;
+```
+
+调用示例
 
 
- 
 
- 
+```objective-c
+- (void)splashAdDidLoad:(MHSplashAd *)splashAd placementID:(NSString *)placementID
+{
+    MHAdExtraInfo * info = [splashAd getExtraInfo];
+}
+```
+
+
+
+
+
+
 
 ### 2）激励视频广告
 
@@ -556,7 +575,13 @@ BOOL isShow = [self.rewardedVideoAd showAdFromRootViewController:self];
 - (void)sendLossNotification:(NSInteger)ecpm;
 ```
 
+激励视频广告获取额外信息
 
+获取广告成功后，可以获得该广告的额外信息。
+
+```objective-c
+- (MHAdExtraInfo *)getExtraInfo;
+```
 
 
 
@@ -771,6 +796,91 @@ MHNativeAdModel 模型
       // 不用的话,上报loss
       //[nativeModel sendLossNotification:0];
     
+}
+```
+
+原生广告获取额外信息
+
+获取开屏广告成功后，可以获得该广告的额外信息。
+
+```objective-c
+- (MHAdExtraInfo *)getExtraInfo;
+```
+
+调用示例
+
+
+
+```objective-c
+// 广告已经收到
+- (void)nativeAdDidLoad:(MHNativeAd *)nativeAd
+            placementID:(NSString *)placementID
+         nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
+{
+    if (nativeAdModels.count <= 0) {
+        [self endRefresh];
+        [self.view makeToast:@"未能加载到广告!" duration:2.0F position:CSToastPositionCenter];
+        return;
+    }
+    MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
+    MHAdExtraInfo * info = [nativeModel getExtraInfo];
+    NSLog(@"nativeAdDidLoad extraInfo: %@", info);
+}
+```
+
+优惠券模型如下
+
+```objective-c
+@interface MHNativeAdCouponModel : NSObject
+
+/// 优惠券类型 1-满减优惠券 2-无门槛立减
+@property (nonatomic, assign, readonly) NSInteger couponType;
+
+/// 优惠金额 单位分
+@property (nonatomic, assign, readonly) NSInteger couponValue;
+
+/// 满多少 单位分
+@property (nonatomic, assign, readonly) NSInteger couponThreshold;
+
+/// 优惠券有效时间 单位分钟
+@property (nonatomic, assign, readonly) NSInteger couponTime;
+
+// 优惠券来源
+@property (nonatomic, copy, readonly) NSString * couponSource;
+
+// 优惠券免责声明
+@property (nonatomic, copy, readonly) NSString *couponDisclaimer;
+
+
+- (instancetype)initWithDictionary:(NSDictionary *)couponDic;
+
+@end
+```
+
+获取优惠券信息
+
+```objective-c
+// 广告已经收到
+- (void)nativeAdDidLoad:(MHNativeAd *)nativeAd
+            placementID:(NSString *)placementID
+         nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
+{
+    if (nativeAdModels.count <= 0) {
+        [self endRefresh];
+        [self.view makeToast:@"未能加载到广告!" duration:2.0F position:CSToastPositionCenter];
+        return;
+    }
+    MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
+    NSLog(@"nativeAdDidLoad nativeAdModel 地址[%d]: %p", i, nativeModel);
+    NSLog(@"优惠券: %@", nativeModel.coupon);
+    if (nativeModel.coupon) {
+        NSLog(@"优惠券类型: %ld", nativeModel.coupon.couponType);
+        NSLog(@"优惠券金额: %ld", nativeModel.coupon.couponValue);
+        NSLog(@"优惠券有效期: %ld", nativeModel.coupon.couponTime);
+        NSLog(@"优惠券满减金额: %ld", nativeModel.coupon.couponThreshold);
+        NSLog(@"优惠券来源: %@", nativeModel.coupon.couponSource);
+        NSLog(@"优惠券免责声明: %@", nativeModel.coupon.couponDisclaimer);
+    }
 }
 ```
 

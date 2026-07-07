@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UIView *adView;
 
+/// 视频结束页"查看详情"按钮是否显示，默认 NO（隐藏）
+@property (nonatomic, assign) BOOL videoPlayFinishClickEnable;
+
 @end
 
 @protocol MHNativeAdViewDelegate <NSObject>

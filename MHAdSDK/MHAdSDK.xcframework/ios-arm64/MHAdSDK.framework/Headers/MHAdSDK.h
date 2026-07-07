@@ -10,6 +10,7 @@
 #import <MHAdSDK/MHMacro.h>
 #import <MHAdSDK/MHTypes.h>
 #import <MHAdSDK/MHAdManager.h>
+#import <MHAdSDK/MHAdExtraInfo.h>
 #import <MHAdSDK/MHAdConfiguration.h>
 #import <MHAdSDK/UIView+MHAdSDK.h>
 

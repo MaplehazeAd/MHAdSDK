@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 优惠券有效时间 单位分钟
 @property (nonatomic, assign, readonly) NSInteger couponTime;
 
+// 优惠券来源
+@property (nonatomic, copy, readonly) NSString * couponSource;
+
+// 优惠券免责声明
+@property (nonatomic, copy, readonly) NSString *couponDisclaimer;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)couponDic;
 
