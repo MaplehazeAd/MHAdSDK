@@ -404,33 +404,6 @@ pod install
 }
 ```
 
-
-
-开屏广告获取额外信息
-
-获取开屏广告成功后，可以获得该广告的额外信息。
-
-```objective-c
-- (MHAdExtraInfo *)getExtraInfo;
-```
-
-调用示例
-
-
-
-```objective-c
-- (void)splashAdDidLoad:(MHSplashAd *)splashAd placementID:(NSString *)placementID
-{
-    MHAdExtraInfo * info = [splashAd getExtraInfo];
-}
-```
-
-
-
-
-
-
-
 ### 2）激励视频广告
 
 加载激励视频广告
@@ -575,41 +548,6 @@ BOOL isShow = [self.rewardedVideoAd showAdFromRootViewController:self];
 - (void)sendLossNotification:(NSInteger)ecpm;
 ```
 
-激励视频广告获取额外信息
-
-获取广告成功后，可以获得该广告的额外信息。
-
-```objective-c
-- (MHAdExtraInfo *)getExtraInfo;
-```
-
-
-
-调用示例
-
-
-
-```objective-c
-/// 激励视频已经加载.
-- (void)rewardedVideoAdVideoDidLoad:(MHRewardedVideoAd *)rewardedVideoAd
-                        placementID:(NSString *)placementID
-{
-    
-    NSInteger rewardedVideoEcpm = rewardedVideoAd.ecpm;
-    NSString * ecpmString = [NSString stringWithFormat:@"当前激励视频广告的Ecpm: %ld", rewardedVideoEcpm];
-    [self.view makeToast:ecpmString duration:2.0F position:CSToastPositionCenter];
-    
-    // 上报竞胜
-    [self.rewardedVideoAd sendWinNotification:rewardedVideoEcpm];
-    // 上报竞败
-    //[self.rewardedVideoAd sendLossNotification:100];
-    NSLog(@"激励视频已经获取!");
- 
-}
-```
-
-
-
 
 
 ### **3）原生广告**
@@ -731,13 +669,7 @@ BOOL isShow = [self.rewardedVideoAd showAdFromRootViewController:self];
  
 ```
 
-
-
-
-
 MHNativeAdModel 模型
-
-
 
 ```objective-c
 @interface MHNativeAdModel : NSObject
@@ -770,10 +702,6 @@ MHNativeAdModel 模型
 @end
 ```
 
-
-
-
-
  
 
 原生广告竞价
@@ -796,35 +724,6 @@ MHNativeAdModel 模型
       // 不用的话,上报loss
       //[nativeModel sendLossNotification:0];
     
-}
-```
-
-原生广告获取额外信息
-
-获取开屏广告成功后，可以获得该广告的额外信息。
-
-```objective-c
-- (MHAdExtraInfo *)getExtraInfo;
-```
-
-调用示例
-
-
-
-```objective-c
-// 广告已经收到
-- (void)nativeAdDidLoad:(MHNativeAd *)nativeAd
-            placementID:(NSString *)placementID
-         nativeAdModels:(NSArray<MHNativeAdModel *> *)nativeAdModels
-{
-    if (nativeAdModels.count <= 0) {
-        [self endRefresh];
-        [self.view makeToast:@"未能加载到广告!" duration:2.0F position:CSToastPositionCenter];
-        return;
-    }
-    MHNativeAdModel * nativeModel = nativeAdModels.firstObject;
-    MHAdExtraInfo * info = [nativeModel getExtraInfo];
-    NSLog(@"nativeAdDidLoad extraInfo: %@", info);
 }
 ```
 
