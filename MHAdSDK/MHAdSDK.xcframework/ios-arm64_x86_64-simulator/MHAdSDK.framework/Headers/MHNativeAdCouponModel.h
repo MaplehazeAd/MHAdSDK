@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 优惠券免责声明
 @property (nonatomic, copy, readonly) NSString *couponDisclaimer;
 
+// 优惠券描述信息
+@property (nonatomic, copy) NSString *couponDescription;
 
 - (instancetype)initWithDictionary:(NSDictionary *)couponDic;
 

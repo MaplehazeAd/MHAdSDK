@@ -60,7 +60,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.4.2     | 1. 优化激励落地页效果<br />2. 优化获取视频宽高               | 2026.05.14   |
 | 1.4.4.6     | 1. 解决已知问题<br />2. 原生性能增强<br />3. 优化播放器逻辑<br />4. 处理webPageManager | 2026.06.16   |
 | 1.4.5       | 1. 优惠券新增类型无门槛立减（type=2），新增优惠券来源和免责声明字段<br />2. 优化高并发请求，新增最大并发请求书，CPU降频优化<br />3. 新增 ExtraInfo 信息接口<br />4. 处理单例打开商店页导致的问题<br />5. 优化开屏present逻辑<br />6. 处理AFN hack 冲突问题 | 2026.07.07   |
-| 1.4.6       | 1. 兼容 iAdSDK 新版本                                        | 2026.08.03   |
+| 1.4.6       | 1. 兼容 iAdSDK 新版本<br />2. 优化优惠券逻辑<br />3. 新增个性化配置开关 | 2026.08.11   |
 
  
 
@@ -248,6 +248,9 @@ pod install
     // 是否允许SDK 获取位置信息，默认YES-允许
     [MHAdConfiguration sharedConfig].allowLocation = NO;
     [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting = NO;
+  
+    /// 个性化推荐广告开关。0-开启个性化推荐广告（默认），1-关闭个性化推荐广告。
+    // [MHAdConfiguration sharedConfig].personalizedState = 0;
 }
 ```
 
@@ -751,6 +754,8 @@ MHNativeAdModel 模型
 // 优惠券免责声明
 @property (nonatomic, copy, readonly) NSString *couponDisclaimer;
 
+// 优惠券描述信息
+@property (nonatomic, copy) NSString *couponDescription;
 
 - (instancetype)initWithDictionary:(NSDictionary *)couponDic;
 
@@ -780,6 +785,7 @@ MHNativeAdModel 模型
         NSLog(@"优惠券满减金额: %ld", nativeModel.coupon.couponThreshold);
         NSLog(@"优惠券来源: %@", nativeModel.coupon.couponSource);
         NSLog(@"优惠券免责声明: %@", nativeModel.coupon.couponDisclaimer);
+        NSLog(@"优惠券描述信息: %@", nativeModel.coupon.couponDescription);
     }
 }
 ```

@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 注意: [AD loadAd]请求广告时,如果我们请求到广点通SDK预算,进行广点通SDK初始化时,会执行 [GDTSDKConfig enableDefaultAudioSessionSetting:BOOL] 把已经设置好的 [MHAdConfiguration sharedConfig].enableDefaultAudioSessionSetting 作为参数传入
 @property(nonatomic, assign) BOOL enableDefaultAudioSessionSetting;
 
+/// 个性化推荐广告开关。0-开启个性化推荐广告（默认），1-关闭个性化推荐广告。
+@property(nonatomic, assign) NSInteger personalizedState;
+
 @end
 
 NS_ASSUME_NONNULL_END
