@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) MHNativeAd *nativeAd;
 
-- (void)setCell:(MHNativeAdModel *)nativeAdModel;
+- (void)setCell:(MHNativeAdModel *)nativeAdModel videoPlayFinishClickEnable:(BOOL)videoPlayFinishClickEnable;
 
 
 @end

@@ -69,7 +69,7 @@
     self.couponView = [[NativeCouponView alloc] initWithFrame:CGRectMake(16, 8, adWidth, adHeight)];
     self.couponView.delegate = self;
     self.couponView.hidden = YES;
-    [self.nativeAdView addSubview:self.couponView];
+    [self.adView addSubview:self.couponView];
     [self.couponView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.centerX.equalTo(self.nativeAdView);
         make.leading.equalTo(self.nativeAdView).offset(16);
@@ -77,7 +77,7 @@
     }];
 }
 
-- (void)setCell:(MHNativeAdModel *)nativeAdModel {
+- (void)setCell:(MHNativeAdModel *)nativeAdModel videoPlayFinishClickEnable:(BOOL)videoPlayFinishClickEnable {
     // 1. 如果是同一条广告，直接 return，不做任何操作
 //    if (self.boundAdModel == nativeAdModel || [self.boundAdModel isEqual:nativeAdModel]) {
 //        return;
@@ -101,7 +101,7 @@
 
     // 4. 设置广告模型到广告视图
     self.nativeAdView.adView.nativeAdModel = nativeAdModel;
-    
+    self.nativeAdView.adView.videoPlayFinishClickEnable = videoPlayFinishClickEnable;
     // 构建基础可点击视图数组（始终包含 adButton）
     NSMutableArray *clickableViews = [NSMutableArray arrayWithObject:self.nativeAdView.adButton];
 

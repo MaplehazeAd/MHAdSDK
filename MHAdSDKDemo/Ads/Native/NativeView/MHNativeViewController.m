@@ -26,6 +26,7 @@
 
 @property (nonatomic, assign) BOOL isMuted;
 @property (nonatomic, assign) BOOL isAutoPlayMobileNetwork;
+@property (nonatomic, assign) BOOL videoPlayFinishClickEnable;
 
 @property (nonatomic, strong) MHNativeAd *nativeAd;
 
@@ -63,6 +64,7 @@
     
     self.isMuted = YES;
     self.isAutoPlayMobileNetwork = YES;
+    self.videoPlayFinishClickEnable = NO;
     self.adCount = 1;
     // 添加点击手势来收回键盘
     [self addTapGestureToDismissKeyboard];
@@ -122,7 +124,7 @@
     idModel.cellType = MHCommonCellTypeTextField;
     idModel.title = @"广告位id";
 //    idModel.content = @"61903";
-    idModel.content = @"61007";
+    idModel.content = @"64118";
     self.adID = idModel.content;
     [self.dataArray addObject:idModel];
     
@@ -148,6 +150,12 @@
     autoPlayConfigModel.title = @"移动网络是否自动播放";
     autoPlayConfigModel.isSelect = self.isAutoPlayMobileNetwork;
     [self.dataArray addObject:autoPlayConfigModel];
+    
+    MHCommonCellModel * endingClickConfigModel = [[MHCommonCellModel alloc] init];
+    endingClickConfigModel.cellType = MHCommonCellTypeSwitch;
+    endingClickConfigModel.title = @"播放结束页显示按钮";
+    endingClickConfigModel.isSelect = self.videoPlayFinishClickEnable;
+    [self.dataArray addObject:endingClickConfigModel];
     
     
     MHCommonCellModel * requestModel = [[MHCommonCellModel alloc] init];
@@ -244,7 +252,7 @@
         }
         cell.nativeAd = self.nativeAd;
         MHNativeAdModel * model = self.adArray[indexPath.row];
-        [cell setCell:model];
+        [cell setCell:model videoPlayFinishClickEnable:self.videoPlayFinishClickEnable];
         return cell;
     }
 }
@@ -384,7 +392,17 @@
                 break;
             }
         }
+    } else if ([title isEqualToString:@"播放结束页显示按钮"]) {
+        self.videoPlayFinishClickEnable = isOpen;
+        for (MHCommonCellModel *item in self.dataArray) {
+            if ([item.title isEqualToString:@"播放结束页显示按钮"]) {
+                item.isSelect = isOpen;
+                break;
+            }
+        }
     }
+    
+    
     if (self.hasAdData) {
         self.hasAdData = NO;
         [self removeCloseAdData];
@@ -397,6 +415,9 @@
 
 - (void)mhCommonTableViewCellTextFieldValueChanged:(NSIndexPath *_Nullable)indexPath text:(NSString *)text {
     self.adID = text;
+    // 同步更新数据源，防止 reloadData 时输入框被重置为旧值
+    MHCommonCellModel *model = self.dataArray[indexPath.row];
+    model.content = text;
 }
 
 #pragma mark ----- MHNativeAdDelegete
@@ -410,6 +431,7 @@
     NSLog(@"nativeAdDidAppear nativeAdModel 地址: %p", nativeAdModel);
     [self.view makeToast:@"原生自渲染曝光" duration:2.0F position:CSToastPositionCenter];
     NSLog(@"原生自渲染展示");
+    NSLog(@"原生曝光回调检测 - 原生自渲染广告曝光回调");
 }
 
 /// 广告已经被点击。
@@ -444,7 +466,26 @@
     NSLog(@"nativeAdPlayFinish nativeAdModel 地址: %p", nativeAdModel);
 }
 
+- (void)nativeAdDetailViewDidAppear:(MHNativeAd *)nativeAd
+                        placementID:(NSString *)placementID
+                             adView:(MHNativeAdView *)adView
+                      nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    NSLog(@"nativeAd 广告进入全屏广告页");
+    // 我需要打印 nativeAdModel 对象的地址
+    NSLog(@"nativeAdPlayFinish nativeAdModel 地址: %p", nativeAdModel);
+}
 
+/// 广告详情页已关闭。
+- (void)nativeAdDetailViewDidClose:(MHNativeAd *)nativeAd
+                       placementID:(NSString *)placementID
+                            adView:(MHNativeAdView *)adView
+                     nativeAdModel:(MHNativeAdModel *)nativeAdModel
+{
+    NSLog(@"nativeAd 广告离开全屏广告页");
+    // 我需要打印 nativeAdModel 对象的地址
+    NSLog(@"nativeAdPlayFinish nativeAdModel 地址: %p", nativeAdModel);
+}
 
 // 广告已经收到
 - (void)nativeAdDidLoad:(MHNativeAd *)nativeAd
@@ -478,9 +519,12 @@
             NSLog(@"优惠券金额: %ld", nativeModel.coupon.couponValue);
             NSLog(@"优惠券有效期: %ld", nativeModel.coupon.couponTime);
             NSLog(@"优惠券满减金额: %ld", nativeModel.coupon.couponThreshold);
+            NSLog(@"优惠券来源: %@", nativeModel.coupon.couponSource);
+            NSLog(@"优惠券免责声明: %@", nativeModel.coupon.couponDisclaimer);
+            NSLog(@"优惠券描述信息: %@", nativeModel.coupon.couponDescription);
         }
-        
-        NSLog(@"nativeAdDidLoad extraInfo: %@", nativeModel.extraInfo);
+        MHAdExtraInfo * info = [nativeModel getExtraInfo];
+        NSLog(@"nativeAdDidLoad extraInfo: %@", info);
         
         NSInteger nativeEcpm = nativeModel.ecpm;
         NSString * ecpmString = [NSString stringWithFormat:@"当前广告的Ecpm[%d]: %ld",i, nativeEcpm];

@@ -21,6 +21,12 @@
 @property (nonatomic, strong) UITextField *mediaEcpmTextField;
 @property (nonatomic, strong) UIButton *mediaEcpmSaveButton;
 
+@property (nonatomic, strong) UILabel *envLabel;
+@property (nonatomic, strong) UISwitch *envSwitch;
+
+@property (nonatomic, strong) UILabel *personalizedLabel;
+@property (nonatomic, strong) UISwitch *personalizedSwitch;
+
 @end
 
 @implementation MHSettingViewController
@@ -86,17 +92,44 @@
         make.trailing.width.height.equalTo(self.isDebugSwitch);
     }];
     
-    self.toastTitleLabel = [[UILabel alloc] init];
-    self.toastTitleLabel.text = @"点击坐标提示toast";
-    [self.view addSubview:self.toastTitleLabel];
-    
-    [self.toastTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mediaEcpmTextField.mas_bottom).offset(12);
+    // 个性化推荐广告开关（第3项，始终可见）
+    self.personalizedLabel = [[UILabel alloc] init];
+    self.personalizedLabel.text = @"个性化广告推荐";
+    [self.view addSubview:self.personalizedLabel];
+    self.personalizedLabel.hidden = YES;
+    [self.personalizedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mediaEcpmLabel.mas_bottom).offset(12);
         make.leading.equalTo(self.view.mas_leading).offset(30);
         make.width.mas_equalTo(200);
         make.height.mas_equalTo(30);
     }];
+
+    self.personalizedSwitch = [[UISwitch alloc] init];
+    self.personalizedSwitch.on = ([MHAdConfiguration sharedConfig].personalizedState == 0);
+    [self.personalizedSwitch addTarget:self action:@selector(personalizedSwitchDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.personalizedSwitch];
+    self.personalizedSwitch.hidden = YES;
+    [self.personalizedSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.personalizedLabel);
+        make.trailing.equalTo(self.view.mas_trailing).offset(-16);
+        make.width.mas_equalTo(64);
+        make.height.equalTo(self.personalizedLabel);
+    }];
     
+    
+
+    // toast（开发者模式可见）
+    self.toastTitleLabel = [[UILabel alloc] init];
+    self.toastTitleLabel.text = @"点击坐标提示toast";
+    [self.view addSubview:self.toastTitleLabel];
+
+    [self.toastTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.personalizedLabel.mas_bottom).offset(12);
+        make.leading.equalTo(self.view.mas_leading).offset(30);
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(30);
+    }];
+
     self.toastSwitch = [[UISwitch alloc] init];
     self.toastSwitch.on = [MHAdConfiguration sharedConfig].allowToast;
     [self.toastSwitch addTarget:self action:@selector(toastSwitchDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -107,9 +140,35 @@
         make.width.mas_equalTo(64);
         make.height.equalTo(self.toastTitleLabel);
     }];
-    
+
     self.toastTitleLabel.hidden = YES;
     self.toastSwitch.hidden = YES;
+
+    // 生产环境开关（开发者模式可见）
+    self.envLabel = [[UILabel alloc] init];
+    self.envLabel.text = @"生产环境开关";
+    [self.view addSubview:self.envLabel];
+
+    [self.envLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.toastTitleLabel.mas_bottom).offset(12);
+        make.leading.equalTo(self.view.mas_leading).offset(30);
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(30);
+    }];
+
+    self.envSwitch = [[UISwitch alloc] init];
+    self.envSwitch.on = [MHAdConfiguration sharedConfig].isReleaseEnv;
+    [self.envSwitch addTarget:self action:@selector(envSwitchDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.envSwitch];
+    [self.envSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.envLabel);
+        make.trailing.equalTo(self.view.mas_trailing).offset(-16);
+        make.width.mas_equalTo(64);
+        make.height.equalTo(self.envLabel);
+    }];
+
+    self.envLabel.hidden = YES;
+    self.envSwitch.hidden = YES;
     
     
     UILabel * versionLabel = [[UILabel alloc] init];
@@ -129,14 +188,25 @@
     if ([MHAdConfiguration sharedConfig].isDeveloperMode) {
         self.toastTitleLabel.hidden = NO;
         self.toastSwitch.hidden = NO;
+        self.envLabel.hidden = NO;
+        self.envSwitch.hidden = NO;
+        self.personalizedLabel.hidden = NO;
+        self.personalizedSwitch.hidden = NO;
     } else {
         self.toastTitleLabel.hidden = YES;
         self.toastSwitch.hidden = YES;
+        self.envLabel.hidden = YES;
+        self.envSwitch.hidden = YES;
+        self.personalizedLabel.hidden = YES;
+        self.personalizedSwitch.hidden = YES;
     }
 
     
 }
 
+- (void)envSwitchDidChange:(UISwitch * )sender {
+    [MHAdConfiguration sharedConfig].isReleaseEnv = sender.isOn;
+}
 
 - (void)toastSwitchDidChange:(UISwitch * )sender {
     [MHAdConfiguration sharedConfig].allowToast = sender.isOn;
@@ -144,6 +214,10 @@
 
  - (void)isDebugSwitchDidChange:(UISwitch * )sender {
     [MHAdConfiguration sharedConfig].isDebug = sender.isOn;
+}
+
+- (void)personalizedSwitchDidChange:(UISwitch *)sender {
+    [MHAdConfiguration sharedConfig].personalizedState = sender.isOn ? 0 : 1;
 }
      
 - (void)mediaEcpmSaveButtonDidClick {
@@ -159,9 +233,19 @@
     if ([MHAdConfiguration sharedConfig].isDeveloperMode) {
         self.toastTitleLabel.hidden = NO;
         self.toastSwitch.hidden = NO;
+        
+        self.envLabel.hidden = NO;
+        self.envSwitch.hidden = NO;
+        self.personalizedLabel.hidden = NO;
+        self.personalizedSwitch.hidden = NO;
     } else {
         self.toastTitleLabel.hidden = YES;
         self.toastSwitch.hidden = YES;
+        
+        self.envLabel.hidden = YES;
+        self.envSwitch.hidden = YES;
+        self.personalizedLabel.hidden = YES;
+        self.personalizedSwitch.hidden = YES;
     }
 }
 

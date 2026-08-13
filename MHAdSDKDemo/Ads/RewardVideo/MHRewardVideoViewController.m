@@ -106,7 +106,7 @@
     MHCommonCellModel * idModel = [[MHCommonCellModel alloc] init];
     idModel.cellType = MHCommonCellTypeTextField;
     idModel.title = @"广告位id";
-    idModel.content = @"56767";
+    idModel.content = @"64119";
     self.adID = idModel.content;
     [configArray addObject:idModel];
     
@@ -267,6 +267,9 @@
     }
     
     NSLog(@"激励视频已经获取!");
+    MHAdExtraInfo * info = [rewardedVideoAd getExtraInfo];
+    NSLog(@"rewardedVideoAdVideoDidLoad extraInfo: %@", info);
+    
     // 展示广告
     BOOL isShow = [self.rewardedVideoAd showAdFromRootViewController:self];
     NSLog(@"激励视频展示结果: %d", isShow);

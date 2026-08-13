@@ -14,16 +14,18 @@
 @property (nonatomic, strong) UIView *bottomBackgroundView;      // 底部渐变背景
 @property (nonatomic, strong) UIButton *closeButton;           // 关闭按钮
 @property (nonatomic, strong) UIView *adContentView;           // 内容渐变背景
-@property (nonatomic, strong) CAGradientLayer *adContentGradientLayer;  // 保存引用，方便更新frame
+@property (nonatomic, strong) CAGradientLayer *adContentGradientLayer;
 
 @property (nonatomic, strong) UILabel *valueLabel;      // 优惠卷金额
 
 @property (nonatomic, strong) UIView *lineView;      // 分割线
 
-@property (nonatomic, strong) UILabel *thresholdLabel;      // 满多少元可用label
+@property (nonatomic, strong) UILabel *thresholdLabel;      // 满多少元 阈值
 @property (nonatomic, strong) UILabel *timeLabel;      // 有效期
-      // 有效期
-@property (nonatomic, strong) MHNativeAdCouponModel *coupon;      // 有效期
+
+@property (nonatomic, strong) UILabel *sourceLabel;      // 来源
+@property (nonatomic, strong) UILabel *desLabel;      // 描述
+@property (nonatomic, strong) MHNativeAdCouponModel *coupon;      // 模型
 
 @end
 
@@ -89,11 +91,13 @@
         make.width.mas_equalTo(76);    // 虚线宽度
     }];
     
+    
+    
     self.valueLabel = [[UILabel alloc] init];
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.text = [NSString stringWithFormat:@"%ld 元", (long)self.coupon.couponValue];
     self.valueLabel.textColor = [self colorWithHexString:@"#FF0100"];
-    self.valueLabel.font = [UIFont systemFontOfSize:22 weight:UIFontWeightBold]; // 加粗
+    self.valueLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightBold]; // 加粗
     [self.adContentView addSubview:self.valueLabel];
     [self.valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.adContentView).mas_offset(10);
@@ -102,12 +106,36 @@
         make.trailing.mas_equalTo(self.lineView.mas_leading).offset(-8);
     }];
     
+    self.desLabel = [[UILabel alloc] init];
+    self.desLabel.textAlignment = NSTextAlignmentCenter;
+    self.desLabel.textColor = [self colorWithHexString:@"#FF0100"];
+    self.desLabel.font = [UIFont systemFontOfSize:6]; // 加粗
+    [self.adContentView addSubview:self.desLabel];
+    [self.desLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.valueLabel.mas_bottom).mas_offset(-5);
+        make.leading.width.equalTo(self.valueLabel);
+        make.height.mas_equalTo(8);
+    }];
+    
+    self.sourceLabel = [[UILabel alloc] init];
+    self.sourceLabel.textAlignment = NSTextAlignmentLeft;
+    self.sourceLabel.text = self.coupon.couponSource;
+    self.sourceLabel.textColor = [self colorWithHexString:@"#FF0100"];
+    self.sourceLabel.font = [UIFont systemFontOfSize:10]; // 加粗
+    [self.adContentView addSubview:self.sourceLabel];
+    [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.adContentView).offset(2);
+        make.left.equalTo(self.adContentView).mas_offset(8);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(12);
+    }];
+    
     
     self.thresholdLabel = [[UILabel alloc] init];
     self.thresholdLabel.textAlignment = NSTextAlignmentLeft;
     
     self.thresholdLabel.textColor = [self colorWithHexString:@"#801108"];
-    self.thresholdLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightBold]; // 加粗
+    self.thresholdLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightBold]; // 加粗
     [self.adContentView addSubview:self.thresholdLabel];
     [self.thresholdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.adContentView).mas_offset(6);
@@ -136,10 +164,17 @@
     NSString * yuanString = [self convertFenToYuanString:self.coupon.couponValue shouldFormat:NO];
     self.valueLabel.text = [NSString stringWithFormat:@"%@ 元", yuanString];
     
-    NSString * thresholdString = [self convertFenToYuanString:self.coupon.couponThreshold shouldFormat:NO];
-    self.thresholdLabel.text = [NSString stringWithFormat:@"满%@元可用", thresholdString];
-    
-    self.timeLabel.text = [NSString stringWithFormat:@"%ld分钟内有效", self.coupon.couponTime];
+    if (self.coupon.couponType == 1) {
+        // 满减
+        NSString * thresholdString = [self convertFenToYuanString:self.coupon.couponThreshold shouldFormat:NO];
+        self.thresholdLabel.text = [NSString stringWithFormat:@"满%@元可用", thresholdString];
+    } else if (self.coupon.couponType == 2) {
+        // 直减
+        self.thresholdLabel.text = @"无门槛立减";
+    }
+    self.sourceLabel.text = self.coupon.couponSource;
+    self.desLabel.text = self.coupon.couponDescription;
+    self.timeLabel.text = [self getCouponTimeWithCouponModel:self.coupon];
 }
 
 #pragma mark - Layout
@@ -306,5 +341,23 @@
     }
 }
 
+
+- (NSString *)getCouponTimeWithCouponModel:(MHNativeAdCouponModel *)couponModel {
+    NSInteger couponTime = couponModel.couponTime;
+    
+    if (couponTime <= 0) {
+        return @"";
+    }
+    
+    if (couponTime <= 60) {
+        return [NSString stringWithFormat:@"%ld分钟内有效", (long)couponTime];
+    } else if (couponTime <= 24 * 60) {
+        NSInteger hours = couponTime / 60;
+        return [NSString stringWithFormat:@"%ld小时内有效", (long)hours];
+    } else {
+        NSInteger days = couponTime / (24 * 60);
+        return [NSString stringWithFormat:@"%ld天内有效", (long)days];
+    }
+}
 
 @end

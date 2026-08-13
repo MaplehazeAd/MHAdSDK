@@ -65,6 +65,7 @@
     CGFloat adHeight = adWidth / 16 * 9;
     
     self.adView = [[MHNativeAdView alloc]init];
+    NSLog(@"原生曝光回调检测 - 创建 MHNativeAdView");
     self.adView.tag = self.tag;
     
     [self addSubview:self.adView];

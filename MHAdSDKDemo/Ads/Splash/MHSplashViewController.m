@@ -103,7 +103,7 @@
     MHCommonCellModel * idModel = [[MHCommonCellModel alloc] init];
     idModel.cellType = MHCommonCellTypeTextField;
     idModel.title = @"广告位id";
-    idModel.content = @"56763";
+    idModel.content = @"64117";
     self.adID = idModel.content;
     [configArray addObject:idModel];
     
@@ -251,7 +251,7 @@
 {
     // 上报竞胜 && 展示广告
     NSLog(@"SplashViewController 获取到开屏广告");
-    
+    MHAdExtraInfo * info = [splashAd getExtraInfo];
     
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -287,16 +287,35 @@
 
 - (void)splashAdDidAppear:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 出现");
+    [self.view makeToast:@"开屏广告出现" duration:2.0F position:CSToastPositionCenter];
 }
 
 - (void)splashAdDidClicked:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 点击");
+    [self.view makeToast:@"开屏广告点击" duration:2.0F position:CSToastPositionCenter];
 }
 
 
 - (void)splashAdDidDisappear:(MHSplashAd * _Nullable)splashAd placementID:(NSString * _Nullable)placementID { 
     NSLog(@"SplashViewController 开屏广告结束");
+    [self.view makeToast:@"开屏广告结束" duration:2.0F position:CSToastPositionCenter];
 
+}
+
+/// 开屏广告进入全屏广告
+- (void)splashAdDidPresentFullScreen:(MHSplashAd * _Nullable)splashAd
+                         placementID:(NSString *_Nullable)placementID
+{
+    NSLog(@"SplashViewController 开屏广告进入全屏广告页面");
+    [self.view makeToast:@"开屏广告进入全屏广告页面" duration:2.0F position:CSToastPositionCenter];
+}
+
+/// 开屏广告离开全屏广告
+- (void)splashAdDidDismissFullScreen:(MHSplashAd * _Nullable)splashAd
+                         placementID:(NSString *_Nullable)placementID
+{
+    NSLog(@"SplashViewController 开屏广告离开全屏广告页面");
+    [self.view makeToast:@"开屏广告离开全屏广告页面" duration:2.0F position:CSToastPositionCenter];
 }
 
 
