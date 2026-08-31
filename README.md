@@ -61,6 +61,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.4.6     | 1. 解决已知问题<br />2. 原生性能增强<br />3. 优化播放器逻辑<br />4. 处理webPageManager | 2026.06.16   |
 | 1.4.5       | 1. 优惠券新增类型无门槛立减（type=2），新增优惠券来源和免责声明字段<br />2. 优化高并发请求，新增最大并发请求书，CPU降频优化<br />3. 新增 ExtraInfo 信息接口<br />4. 处理单例打开商店页导致的问题<br />5. 优化开屏present逻辑<br />6. 处理AFN hack 冲突问题 | 2026.07.07   |
 | 1.4.6       | 1. 兼容 iAdSDK 新版本<br />2. 优化优惠券逻辑<br />3. 新增个性化配置开关 | 2026.08.11   |
+| 1.4.6.1     | 1. 优化激励视频播放逻辑                                      | 2026.08.31   |
 
  
 
@@ -112,7 +113,7 @@ platform :ios, '11.0'
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.6'
+  pod 'MHAdSDK', '~> 1.4.6.1'
   
   # 如果需要本地cocoapods方式接入，请先下载  
   # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.6.zip
