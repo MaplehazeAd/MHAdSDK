@@ -62,6 +62,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.5       | 1. 优惠券新增类型无门槛立减（type=2），新增优惠券来源和免责声明字段<br />2. 优化高并发请求，新增最大并发请求书，CPU降频优化<br />3. 新增 ExtraInfo 信息接口<br />4. 处理单例打开商店页导致的问题<br />5. 优化开屏present逻辑<br />6. 处理AFN hack 冲突问题 | 2026.07.07   |
 | 1.4.6       | 1. 兼容 iAdSDK 新版本<br />2. 优化优惠券逻辑<br />3. 新增个性化配置开关 | 2026.08.11   |
 | 1.4.6.1     | 1. 优化激励视频播放逻辑                                      | 2026.08.31   |
+| 1.4.6.2     | 1. 兼容旧版本GDT SDK<br />2. 优化打包流程<br />3. 新增原生自渲染videoDuration和videoUrl接口 | 2026.09.18   |
 
  
 
@@ -695,6 +696,13 @@ MHNativeAdModel 模型
 @property (nonatomic, readonly) NSInteger imageHeight;
 /// 是不是视频广告
 @property (nonatomic, readonly) BOOL isVideoAd;
+
+/// 视频时长,单位:ms
+@property (nonatomic, readonly) NSInteger videoDuration;
+
+/// 视频URL
+@property (nonatomic, copy, readonly) NSString *videoUrl;
+
 /// ecpm 用来竞价
 @property (nonatomic, readonly) NSInteger ecpm;
  
@@ -787,6 +795,11 @@ MHNativeAdModel 模型
         NSLog(@"优惠券来源: %@", nativeModel.coupon.couponSource);
         NSLog(@"优惠券免责声明: %@", nativeModel.coupon.couponDisclaimer);
         NSLog(@"优惠券描述信息: %@", nativeModel.coupon.couponDescription);
+    }
+           
+    if (nativeModel.isVideoAd) {
+        NSLog(@"视频宽: %ld 高: %ld",nativeModel.imageWidth, nativeModel.imageHeight);
+        NSLog(@"视频时长: %ld ms 视频地址: %@",nativeModel.videoDuration, nativeModel.videoUrl);
     }
 }
 ```

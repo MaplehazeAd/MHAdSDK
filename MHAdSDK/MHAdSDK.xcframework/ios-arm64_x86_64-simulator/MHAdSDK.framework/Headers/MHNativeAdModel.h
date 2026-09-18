@@ -32,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是不是视频广告
 @property (nonatomic, readonly) BOOL isVideoAd;
 
+/// 视频时长,单位:ms
+@property (nonatomic, readonly) NSInteger videoDuration;
+
+/// 视频URL
+@property (nonatomic, copy, readonly) NSString *videoUrl;
+
 /// ecpm
 @property (nonatomic, readonly) NSInteger ecpm;
 
