@@ -43,8 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 开发者模式.默认NO
 @property(nonatomic, assign) BOOL isDeveloperMode;
 
-@property(nonatomic, assign) NSInteger mediaFinalEcpm;
-
 /// 此接口功能
 /// 1. 设置本单例的 enableDefaultAudioSessionSetting 属性
 /// ----- -----

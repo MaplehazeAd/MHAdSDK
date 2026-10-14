@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MHAdExtraInfo.h"
-
+#import "MHTypes.h"
 @class MHSplashAd;
 
 /// 开屏广告代理。
@@ -78,7 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendWinNotification:(NSInteger)ecpm;
 
 // 竞败上报
-- (void)sendLossNotification:(NSInteger)ecpm;
+- (void)sendLossNotification:(NSInteger)ecpm
+                      reason:(MHBiddingLossReason)reason;
 
 - (MHAdExtraInfo *)getExtraInfo;
 

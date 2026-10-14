@@ -221,7 +221,7 @@
 }
      
 - (void)mediaEcpmSaveButtonDidClick {
-    [MHAdConfiguration sharedConfig].mediaFinalEcpm = [self.mediaEcpmTextField.text integerValue];
+
 }
 
 - (void)versionLabelTap:(UITapGestureRecognizer *)tapGR {

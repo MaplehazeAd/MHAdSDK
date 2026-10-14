@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "MHNativeAdCouponModel.h"
 #import "MHAdExtraInfo.h"
-
+#import "MHTypes.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MHNativeAdModel : NSObject
@@ -50,7 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendWinNotification:(NSInteger)ecpm;
 
 // 竞败上报
-- (void)sendLossNotification:(NSInteger)ecpm;
+- (void)sendLossNotification:(NSInteger)ecpm
+                      reason:(MHBiddingLossReason)reason;
 
 // 获取logo+文字图
 - (UIImage *)getAdLogoDrawableRes;
