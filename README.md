@@ -10,7 +10,7 @@ SDK名称：枫岚互联 iOS SDK
 
 主要功能：广告投放、效果数据监测
 
-版本号：1.4.7.1
+版本号：1.4.7.3
 
 下载地址：https://github.com/MaplehazeAd/MHAdSDK
 
@@ -64,7 +64,7 @@ SDK名称：枫岚互联 iOS SDK
 | 1.4.6.1     | 1. 优化激励视频播放逻辑                                      | 2026.08.31   |
 | 1.4.6.2     | 1. 兼容旧版本GDT SDK<br />2. 优化打包流程<br />3. 新增原生自渲染videoDuration和videoUrl接口 | 2026.09.18   |
 | 1.4.7       | 1. 优化上报<br />2. 新增 JAD SDK 原生优惠券信息返回          | 2026.10.14   |
-| 1.4.7.1     | 1. 优化激励视频<br />2. 优化原生自渲染                       |              |
+| 1.4.7.3     | 1. 优化激励视频<br />2. 优化原生自渲染                       | 2026.11.06   |
 
  
 
@@ -110,16 +110,18 @@ SDK名称：枫岚互联 iOS SDK
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
+# MHAdSDK 的 Specs 仓库
+source 'https://github.com/MaplehazeAd/MHAdSpecs.git'
 
 platform :ios, '11.0'
 # 这里的 MHAdSDKDemo 应该是你自己的工程名
 target 'MHAdSDKDemo' do
   use_frameworks!
   # 必须 - MH 广告SDK，推荐通过远程cocoapods方式直接接入。
-  pod 'MHAdSDK', '~> 1.4.7.1'
+  pod 'MHAdSDK', '~> 1.4.7.3'
   
   # 如果需要本地cocoapods方式接入，请先下载  
-  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.7.1.zip
+  # http://static.maplehaze.cn/sdk/ios/release/package/mh_adsdk_v1.4.7.3.zip
   # 再使用下面的本地路径
   # pod 'MHAdSDK', :path => './MHAdSDK'
 
